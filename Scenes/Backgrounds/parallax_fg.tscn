@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://di5642v8458n8"]
+
+[ext_resource type="Texture2D" uid="uid://bgynjqvlv8beo" path="res://Assets/ForestBG1/Layer-9.png" id="8_jaj1l"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+layer = 5
+
+[node name="ParallaxLayer8" type="ParallaxLayer" parent="."]
+z_index = 200
+position = Vector2(960, 360)
+motion_scale = Vector2(1.2, 1)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer8"]
+texture = ExtResource("8_jaj1l")

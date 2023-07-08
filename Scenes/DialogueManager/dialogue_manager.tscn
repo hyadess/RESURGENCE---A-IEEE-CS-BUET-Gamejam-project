@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://c786bn6uu3qvv"]
+
+[ext_resource type="FontFile" uid="uid://bjoaid14rmtxw" path="res://Assets/Fonts/Roboto-Medium.ttf" id="1_dxc7r"]
+[ext_resource type="Script" path="res://Scenes/DialogueManager/dialogue_manager.gd" id="1_wm0ju"]
+[ext_resource type="Script" path="res://Scenes/DialogueManager/Dialogue.gd" id="3_dm0ed"]
+
+[sub_resource type="Theme" id="Theme_ypxbq"]
+default_font = ExtResource("1_dxc7r")
+default_font_size = 32
+
+[node name="DialogueManager" type="CanvasLayer"]
+script = ExtResource("1_wm0ju")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -157.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0.0392157, 0.509804, 0.745098, 1)
+
+[node name="Dialogue" type="Label" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -34.5
+offset_top = -13.0
+offset_right = 34.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ypxbq")
+text = "Dialogue
+"
+script = ExtResource("3_dm0ed")

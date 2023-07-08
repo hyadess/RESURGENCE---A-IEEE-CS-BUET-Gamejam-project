@@ -1,0 +1,127 @@
+[gd_scene load_steps=8 format=3 uid="uid://c0d7t8nfb2168"]
+
+[ext_resource type="StyleBox" uid="uid://db4xg1tkef7ko" path="res://Scenes/UI/Normal_Button_Theme.tres" id="1_7g4st"]
+[ext_resource type="Theme" uid="uid://bikiobbxa42tr" path="res://Scenes/UI/title_theme.tres" id="1_obbxl"]
+[ext_resource type="StyleBox" uid="uid://tnaymao6lb0u" path="res://Scenes/UI/PressedButton.tres" id="2_fbtld"]
+[ext_resource type="Script" path="res://Scenes/UI/PauseMenu/pauseMenu.gd" id="3_m71xn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06ya2"]
+bg_color = Color(0.396078, 0.396078, 0.396078, 1)
+border_color = Color(0.215686, 0.215686, 0.215686, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxqt6"]
+bg_color = Color(0.0627451, 0.184314, 0.188235, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_color = Color(0, 0, 0, 0.85098)
+shadow_size = 20
+
+[sub_resource type="Theme" id="Theme_aj0yl"]
+Button/styles/disabled = SubResource("StyleBoxFlat_06ya2")
+Button/styles/focus = ExtResource("1_7g4st")
+Button/styles/hover = ExtResource("1_7g4st")
+Button/styles/normal = ExtResource("1_7g4st")
+Button/styles/pressed = ExtResource("2_fbtld")
+Panel/styles/panel = SubResource("StyleBoxFlat_rxqt6")
+
+[node name="PauseMenuPanel" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_aj0yl")
+script = ExtResource("3_m71xn")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -198.0
+offset_right = 338.0
+offset_bottom = 198.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -135.5
+offset_top = -132.0
+offset_right = 135.5
+offset_bottom = -70.0
+grow_horizontal = 2
+theme = ExtResource("1_obbxl")
+theme_override_font_sizes/font_size = 55
+text = "Game Paused"
+
+[node name="ResumeButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -78.5
+offset_top = 1.5
+offset_right = 78.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_obbxl")
+theme_override_font_sizes/font_size = 35
+text = "Resume
+"
+
+[node name="RestartButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.5
+offset_top = 1.5
+offset_right = -123.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_obbxl")
+theme_override_font_sizes/font_size = 35
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 121.5
+offset_top = 1.5
+offset_right = 278.5
+offset_bottom = 72.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_obbxl")
+theme_override_font_sizes/font_size = 35
+text = "Exit"
+
+[connection signal="pressed" from="ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]

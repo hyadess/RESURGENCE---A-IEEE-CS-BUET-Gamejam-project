@@ -1,0 +1,84 @@
+[gd_scene load_steps=5 format=3 uid="uid://j3s11ouawk66"]
+
+[ext_resource type="Theme" uid="uid://bikiobbxa42tr" path="res://Scenes/UI/title_theme.tres" id="1_3dcs5"]
+[ext_resource type="Script" path="res://Scenes/UI/Main/main_menu.gd" id="1_sykyd"]
+[ext_resource type="FontFile" uid="uid://lw74g77ulxmj" path="res://Assets/Fonts/Roboto-Black.ttf" id="3_xyop7"]
+
+[sub_resource type="Theme" id="Theme_ch61o"]
+default_font = ExtResource("3_xyop7")
+default_font_size = 44
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3dcs5")
+script = ExtResource("1_sykyd")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -226.0
+offset_top = 100.0
+offset_right = 226.0
+offset_bottom = 219.0
+grow_horizontal = 2
+theme = ExtResource("1_3dcs5")
+text = "Game Title"
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -157.5
+offset_right = 189.0
+offset_bottom = -46.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ch61o")
+text = "Play"
+
+[node name="Instructiuons" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = -20.5
+offset_right = 189.0
+offset_bottom = 90.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ch61o")
+text = "Instructions
+"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -189.0
+offset_top = 115.5
+offset_right = 189.0
+offset_bottom = 226.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_ch61o")
+text = "Exit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
