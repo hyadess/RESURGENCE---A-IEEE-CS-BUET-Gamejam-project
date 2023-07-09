@@ -23,7 +23,7 @@ _data = {
 "fade_to_black": SubResource("Animation_lq6wr")
 }
 
-[node name="transition" type="CanvasLayer"]
+[node name="Transition" type="CanvasLayer"]
 script = ExtResource("1_l6gim")
 
 [node name="ColorRect" type="ColorRect" parent="."]

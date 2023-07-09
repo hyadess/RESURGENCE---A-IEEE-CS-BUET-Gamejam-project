@@ -1,0 +1,160 @@
+[gd_scene load_steps=22 format=3 uid="uid://ccjeyus7dgtha"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/FollowerEnemy2/followerEnemy.gd" id="1_bet5j"]
+[ext_resource type="Texture2D" uid="uid://b05ulj23mwt1c" path="res://Assets/Animation Sprite Sheets (PNG)/PassiveIdleReaper-Sheet.png" id="3_25nck"]
+[ext_resource type="Texture2D" uid="uid://bklaxgyj8ycjw" path="res://Assets/eyes.png" id="5_3samw"]
+[ext_resource type="Texture2D" uid="uid://cn84wtl0mxgbb" path="res://Assets/Animation Sprite Sheets (PNG)/PassiveRunningReaper-Sheet.png" id="6_1fd5w"]
+[ext_resource type="PackedScene" uid="uid://b6h2j610wro7g" path="res://Scenes/Player/Dash/dash.tscn" id="52_l6igk"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnvtn"]
+radius = 13.0
+height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qev75"]
+atlas = ExtResource("3_25nck")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dwstc"]
+atlas = ExtResource("3_25nck")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi1xo"]
+atlas = ExtResource("3_25nck")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6xpkf"]
+atlas = ExtResource("3_25nck")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxhkt"]
+atlas = ExtResource("3_25nck")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44p07"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hjer"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm47s"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_le4cc"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt2fu"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ckk7x"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n0ny1"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40nok"]
+atlas = ExtResource("6_1fd5w")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ellql"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qev75")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dwstc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi1xo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6xpkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxhkt")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44p07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hjer")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rm47s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_le4cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt2fu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ckk7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n0ny1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40nok")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1u2d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3samw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player2" type="CharacterBody2D"]
+script = ExtResource("1_bet5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_qnvtn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0, 1, 2, 1)
+texture_filter = 1
+position = Vector2(70, -14)
+sprite_frames = SubResource("SpriteFrames_ellql")
+animation = &"Run"
+offset = Vector2(-70, 14)
+
+[node name="Dash" parent="." instance=ExtResource("52_l6igk")]
+visible = false
+
+[node name="DashTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="FollowTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="Eyes" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -6.5)
+scale = Vector2(0.0769841, 0.0757576)
+sprite_frames = SubResource("SpriteFrames_y1u2d")
+
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="FollowTimer" to="." method="_on_follow_timer_timeout"]
