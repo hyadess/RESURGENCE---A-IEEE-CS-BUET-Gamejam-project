@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dbhh1ux71x4xa"]
+[gd_scene load_steps=71 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://cahys4vfcc84i" path="res://Assets/1-Player-Bomb Guy/5-Fall/1.png" id="1_r6h51"]
@@ -60,6 +60,9 @@
 [ext_resource type="Texture2D" uid="uid://c3lwlfi0c61e6" path="res://Assets/White Slash Thin/File6.png" id="58_kvmsl"]
 [ext_resource type="Texture2D" uid="uid://be61e07mtfaqm" path="res://Assets/sword_pic.png" id="59_o5625"]
 [ext_resource type="Script" path="res://Scenes/Player/sword.gd" id="60_qupxa"]
+[ext_resource type="AudioStream" uid="uid://3vtqo4vw4dy3" path="res://Assets/sounds/dash.mp3" id="61_xw0a0"]
+[ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="62_fnfrv"]
+[ext_resource type="AudioStream" uid="uid://d3c74qv5vl7bp" path="res://Assets/sounds/Jump.wav" id="63_ug3rk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ie7vj"]
 animations = [{
@@ -275,6 +278,69 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyt2p"]
 size = Vector2(32, 25)
 
+[sub_resource type="Animation" id="Animation_s6hy7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("59_o5625")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.08, 0.08)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.605629]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(4, 23)]
+}
+
 [sub_resource type="Animation" id="Animation_x6et0"]
 resource_name = "sword_play"
 length = 0.4
@@ -337,69 +403,6 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-1, 4), Vector2(4, 23), Vector2(-11, 26), Vector2(-22, 8), Vector2(-18, 3)]
-}
-
-[sub_resource type="Animation" id="Animation_s6hy7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("59_o5625")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.08, 0.08)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.605629]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 23)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o30ji"]
@@ -466,6 +469,15 @@ speed_scale = 1.7
 libraries = {
 "": SubResource("AnimationLibrary_o30ji")
 }
+
+[node name="dashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("61_xw0a0")
+
+[node name="slashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("62_fnfrv")
+
+[node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("63_ug3rk")
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="sword_slash" to="." method="_on_sword_slash_animation_finished"]
