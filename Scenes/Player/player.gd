@@ -12,7 +12,7 @@ signal player_died
 @export var can_dash=true
 
 
-@export var actual_speed = 300.0 #400 chiilo
+@export var actual_speed = 400.0
 @export var actual_jump_strength = 50000.0
 @export var actual_double_jump_strength = 60000.0
 @export var maximum_jumps = 2
@@ -36,20 +36,17 @@ var is_running = false
 var is_grounded = false
 var facing = "right"
 var is_alive = false
-var is_attacking=false
-
-func _ready():
-	is_alive = true
+var playing_attack_animiation = false
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	is_alive = true
 
 func _physics_process(delta):
 	
-	if Input.is_action_just_pressed("dash"):
-		
-		#kill()
-		pass
+#	if Input.is_action_just_pressed("dash"):
+#		kill()
+#		pass
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -64,13 +61,8 @@ func _physics_process(delta):
 		#dash
 		if Input.is_action_just_pressed("dash") and dash.is_dashing()==false and can_dash==true and not is_idling :
 			dash.start_dash($AnimatedSprite2D,dash_duration)
-			$dashSound.play()
 			can_dash=false
 			$DashTimer.start()
-		if Input.is_action_just_pressed("jump"):
-			$jumpSound.play()
-			
-		
 		
 		speed = dash_speed if dash.is_dashing() else actual_speed
 		jump_strength = dash_jump_strength if dash.is_dashing() else actual_jump_strength
@@ -88,6 +80,17 @@ func _physics_process(delta):
 
 		else:
 			velocity.x = lerpf(velocity.x, 0, 0.2)
+			
+			
+			
+		if Input.is_action_just_pressed("attack"):
+			$sword_slash.visible=true
+			$sword_slash.play("slash")
+			$sword_collision.visible=true
+			if(playing_attack_animiation == false):
+				playing_attack_animiation = true
+				var attack_idx = randi_range(2 ,3)
+				$AnimatedSprite2D.play("Attack" + str(attack_idx))
 			
 	
 	# States
@@ -140,23 +143,16 @@ func _physics_process(delta):
 	is_grounded = is_on_floor()
 	
 	if was_grounded == null || was_grounded != is_grounded:
-		emit_signal("grounded_updated", is_grounded)
+		#emit_signal("grounded_updated", is_grounded)
 		pass
 		
 	
-	if Input.is_action_just_pressed("attack") and is_attacking==false:
-		$sword_slash.visible=true
-		$slashSound.play()
-		$sword_slash.play("slash")
-		$sword_collision.visible=true
-		$sword.visible=true
-		$sword.play()
-		is_attacking=true
-		
-		
 	
+		
+		
 
 	if position.y > 5000 : kill()
+	
 	
 	#remove this later	
 	if Input.is_action_just_pressed("force_quit"):
@@ -168,10 +164,10 @@ func animation():
 		$AnimatedSprite2D.flip_h = true
 	else :
 		$AnimatedSprite2D.flip_h = false
-		
-	if is_jumping: $AnimatedSprite2D.play("Jump")
-	elif is_running: $AnimatedSprite2D.play("Run")
-	elif is_idling: $AnimatedSprite2D.play("Idle")
+	if not playing_attack_animiation:	
+		if is_jumping or is_double_jumping: $AnimatedSprite2D.play("Jump")
+		elif is_running: $AnimatedSprite2D.play("Run")
+		elif is_idling: $AnimatedSprite2D.play("Idle")
 	
 	pass
 
@@ -200,10 +196,10 @@ func _on_dash_timer_timeout():
 	can_dash=true
 	
 	
-
 func _on_sword_slash_animation_finished():
 	$sword_slash.visible=false
 	$sword_collision.visible=false
-	$sword.visible=false  
-	is_attacking=false
+	$sword.visible=false
+	playing_attack_animiation = false
+	$AnimatedSprite2D.play("Idle")
 	
