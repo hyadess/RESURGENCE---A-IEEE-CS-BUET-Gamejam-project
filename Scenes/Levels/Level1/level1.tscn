@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c58j0hoev4567"]
+[gd_scene load_steps=6 format=3 uid="uid://c58j0hoev4567"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level1/level1.gd" id="1_ofghk"]
 [ext_resource type="Texture2D" uid="uid://df2pwoo73wdek" path="res://Assets/Pirate Island/Palm Tree Island/Sprites/Terrain/Terrain (32x32).png" id="2_0fwii"]
 [ext_resource type="PackedScene" uid="uid://dbhh1ux71x4xa" path="res://Scenes/Player/player.tscn" id="3_3qe5y"]
-[ext_resource type="PackedScene" uid="uid://ccjeyus7dgtha" path="res://Scenes/Player/player2.tscn" id="4_6rrng"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcoyj"]
 resource_name = "BaseTileset"
@@ -216,9 +215,6 @@ layer_0/tile_data = PackedInt32Array(1703955, 65536, 0, 1703956, 65536, 0, 17039
 [node name="Player" parent="." instance=ExtResource("3_3qe5y")]
 position = Vector2(630, 950)
 
-[node name="Player2" parent="." instance=ExtResource("4_6rrng")]
-position = Vector2(80, 890)
-
 [node name="RecordPosTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
@@ -226,9 +222,6 @@ autostart = true
 [node name="StartFollowTimer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
-
-[node name="Player3" parent="." instance=ExtResource("3_3qe5y")]
-position = Vector2(820, 980)
 
 [connection signal="timeout" from="RecordPosTimer" to="." method="_on_record_pos_timer_timeout"]
 [connection signal="timeout" from="StartFollowTimer" to="." method="_on_start_follow_timer_timeout"]
