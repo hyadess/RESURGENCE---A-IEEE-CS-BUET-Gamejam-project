@@ -39,7 +39,6 @@ var is_grounded = false
 var facing = "right"
 var is_alive = false
 
-
 func _physics_process(delta):
 	
 	# Add the gravity.
