@@ -223,7 +223,9 @@ autostart = true
 wait_time = 1.5
 autostart = true
 
+
 [node name="Camera2D" type="Camera2D" parent="."]
+
 
 [connection signal="timeout" from="RecordPosTimer" to="." method="_on_record_pos_timer_timeout"]
 [connection signal="timeout" from="StartFollowTimer" to="." method="_on_start_follow_timer_timeout"]

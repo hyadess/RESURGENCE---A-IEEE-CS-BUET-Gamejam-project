@@ -124,6 +124,17 @@ func _physics_process(delta):
 	if was_grounded == null || was_grounded != is_grounded:
 		#emit_signal("grounded_updated", is_grounded)
 		pass
+		
+	
+	if Input.is_action_just_pressed("attack"):
+		$sword_slash.visible=true
+		$sword_slash.play("slash")
+		$sword_collision.visible=true
+		$sword.visible=true
+		$sword.play()
+		
+		
+	
 
 	if position.y > 5000 : kill()
 	
@@ -152,3 +163,13 @@ func kill():
 
 func _on_dash_timer_timeout():
 	can_dash=true
+	
+	
+
+
+
+func _on_sword_slash_animation_finished():
+	$sword_slash.visible=false
+	$sword_collision.visible=false
+	$sword.visible=false  
+	
