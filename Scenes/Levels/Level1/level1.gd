@@ -2,10 +2,19 @@ extends Node2D
 
 var recorded_positions := []
 
+#signals
+signal level_clear
+signal level_lost
+
+
+var camera : Camera2D
+var is_player_alive : bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	is_player_alive = true
+	camera = $Player/Camera2D
+	camera.make_current()
 
 func add_position(pos):
 	#if(recorded_positions.size() == 0):
@@ -22,4 +31,5 @@ func _on_record_pos_timer_timeout():
 
 
 func _on_start_follow_timer_timeout():
-	$Player2.do_follow = true
+	#$Player2.do_follow = true
+	pass
