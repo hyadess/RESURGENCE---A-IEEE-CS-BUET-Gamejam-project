@@ -152,13 +152,14 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5huxm"]
-radius = 4.0
-height = 24.0
+radius = 6.0
+height = 36.0
 
 [node name="fireBall" type="CharacterBody2D"]
 script = ExtResource("1_mal3b")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_6g556")
 animation = &"active"
 frame_progress = 0.153964
