@@ -465,6 +465,7 @@ shape = SubResource("RectangleShape2D_yyt2p")
 disabled = true
 
 [node name="sword_collision2" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision2"]
 position = Vector2(-32, 1.5)

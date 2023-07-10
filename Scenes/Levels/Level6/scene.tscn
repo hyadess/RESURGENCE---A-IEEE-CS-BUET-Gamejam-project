@@ -210,7 +210,7 @@ size = Vector2(150, 117)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ofghk")
-timelimit = 30
+timelimit = 29
 enemies_to_spawn = 6
 start_distance = 190
 

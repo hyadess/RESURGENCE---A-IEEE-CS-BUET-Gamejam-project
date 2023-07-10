@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://ckqoi6bpghkwl"]
+[gd_scene load_steps=60 format=3 uid="uid://ckqoi6bpghkwl"]
 
 [ext_resource type="Script" path="res://Scenes/boss/reaper.gd" id="1_rh4x6"]
 [ext_resource type="Texture2D" uid="uid://dvmccy3jlmu6l" path="res://Assets/reaper/HostileAttackReaper-Sheet.png" id="1_s35ws"]
@@ -381,6 +381,12 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iki3v"]
+size = Vector2(44.1176, 22.3529)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kdnl0"]
+size = Vector2(44.1176, 22.9412)
+
 [node name="reaper" type="CharacterBody2D"]
 scale = Vector2(1.7, 1.7)
 script = ExtResource("1_rh4x6")
@@ -405,7 +411,7 @@ one_shot = true
 stream = ExtResource("7_ysa0q")
 
 [node name="soul_timer" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 0.2
 
 [node name="bombing_time" type="Timer" parent="."]
 wait_time = 5.0
@@ -413,6 +419,22 @@ one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 enabled = false
+
+[node name="slash1" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slash1"]
+position = Vector2(34.1176, 0)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_iki3v")
+
+[node name="slash2" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="slash2"]
+position = Vector2(-32.9412, 0.588235)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_kdnl0")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
