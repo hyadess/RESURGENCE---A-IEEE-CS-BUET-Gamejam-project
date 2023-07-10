@@ -110,6 +110,7 @@ layout_mode = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yhccr")
 
+[connection signal="dialogue_stop" from="DialogueManager" to="." method="_on_dialogue_manager_dialogue_stop"]
 [connection signal="exit_button" from="InGameMenu/Pause/PauseMenuPanel" to="." method="_on_pause_menu_panel_exit_button"]
 [connection signal="restart_button" from="InGameMenu/Pause/PauseMenuPanel" to="." method="_on_pause_menu_panel_restart_button"]
 [connection signal="resume_button" from="InGameMenu/Pause/PauseMenuPanel" to="." method="_on_pause_menu_panel_resume_button"]

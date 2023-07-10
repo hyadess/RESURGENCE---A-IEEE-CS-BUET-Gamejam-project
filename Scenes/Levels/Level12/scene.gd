@@ -19,6 +19,7 @@ var images = ["Bigguy", "player", "Bigguy","Bigguy","player"]
 var shown_dialogues = false
 var show_mirror_dialogue = false
 var met_ghost = false
+var last_dialogue = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -29,7 +30,7 @@ func _ready():
 	await get_tree().create_timer(2).timeout
 	$Player/AnimatedSprite2D.play("Idle")
 	get_parent().get_parent().play_dialogues(["Where am I?", "Its that mirror again", "Did I fall asleep?", "It must've been a deram", "Maybe I should go back"], ["player","player","player","player","player"])
-	
+	get_parent().get_parent().dialogue_stopped.connect(_on_dialogue_finished)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
@@ -45,6 +46,8 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("force_quit"):
 		get_tree().quit()
+		
+	
 
 # Caution : Check if player is alive before using $Player
 func check_win_condition():
@@ -86,5 +89,9 @@ func _on_area_2d_area_entered(area):
 		get_parent().get_parent().play_dialogues(dialogues, images)
 		await get_tree().create_timer(1).timeout
 		#emit_signal("level_clear")
+		last_dialogue = true;
 		shown_dialogues = true
 
+func _on_dialogue_finished():
+	if last_dialogue:
+		emit_signal("level_clear")

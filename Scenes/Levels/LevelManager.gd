@@ -3,6 +3,8 @@ extends Node2D
 var level : Node
 var level_no : int
 
+signal dialogue_stopped
+
 func _ready():
 	load_level(Globals.level_to_load)
 
@@ -84,3 +86,7 @@ func activate_level_timer():
 	
 func update_level_timer(val):
 	$InGameMenu/TimerIndicator/TextureProgressBar.value = val
+
+
+func _on_dialogue_manager_dialogue_stop():
+	emit_signal("dialogue_stopped")

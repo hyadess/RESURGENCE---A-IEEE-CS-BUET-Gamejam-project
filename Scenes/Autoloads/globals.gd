@@ -4,7 +4,7 @@ const SAVE_FILE = "res://gamedata.txt"
 
 var level_to_load:int = 0
 var max_level_reached:int = 0
-@export var total_levels:int = 11
+@export var total_levels:int = 12
 var level_lost = false
 var showing_dialogue = false
 var got_key = false
