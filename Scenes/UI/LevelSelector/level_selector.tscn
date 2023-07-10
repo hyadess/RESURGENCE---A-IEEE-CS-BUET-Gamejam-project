@@ -1,0 +1,93 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhrmued6emj8t"]
+
+[ext_resource type="Script" path="res://Scenes/UI/LevelSelector/level_selector.gd" id="1_vm1r5"]
+[ext_resource type="Theme" uid="uid://bikiobbxa42tr" path="res://Scenes/UI/title_theme.tres" id="2_n1yw0"]
+
+[node name="LevelSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vm1r5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1625.0
+offset_top = 942.0
+offset_right = 1831.0
+offset_bottom = 1017.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+text = "Menu"
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 279.0
+offset_top = 420.0
+offset_right = 408.0
+offset_bottom = 538.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+
+[node name="Button3" type="Button" parent="."]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 416.0
+offset_right = 648.0
+offset_bottom = 534.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+
+[node name="Button4" type="Button" parent="."]
+layout_mode = 0
+offset_left = 748.0
+offset_top = 416.0
+offset_right = 877.0
+offset_bottom = 534.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+
+[node name="Button5" type="Button" parent="."]
+layout_mode = 0
+offset_left = 966.0
+offset_top = 412.0
+offset_right = 1095.0
+offset_bottom = 530.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+
+[node name="Button6" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1186.0
+offset_top = 410.0
+offset_right = 1315.0
+offset_bottom = 528.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+
+[node name="Button7" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1415.0
+offset_top = 408.0
+offset_right = 1544.0
+offset_bottom = 526.0
+theme = ExtResource("2_n1yw0")
+theme_override_font_sizes/font_size = 45
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="Button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="Button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="Button6" to="." method="_on_button_6_pressed"]
+[connection signal="pressed" from="Button7" to="." method="_on_button_7_pressed"]

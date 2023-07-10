@@ -59,7 +59,7 @@ func on_level_lost():
 func _on_pause_menu_panel_exit_button():
 	get_tree().paused = false
 	$InGameMenu/Pause.visible = false
-	#get_tree().change_scene("res://src/Main/Game.tscn") # menu the jaoya lagbe
+	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
 
 func _on_pause_menu_panel_restart_button():
 	$InGameMenu/Pause.visible = false
