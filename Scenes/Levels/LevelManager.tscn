@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwpeb1qhlkggq"]
+[gd_scene load_steps=9 format=3 uid="uid://dwpeb1qhlkggq"]
 
+[ext_resource type="Script" path="res://Scenes/Levels/LevelManager.gd" id="1_6d3sg"]
 [ext_resource type="PackedScene" uid="uid://c85ml30haec3" path="res://Scenes/Backgrounds/parallax_bg.tscn" id="1_hc20e"]
-[ext_resource type="PackedScene" uid="uid://c58j0hoev4567" path="res://Scenes/Levels/Level1/level1.tscn" id="2_4uk63"]
 [ext_resource type="PackedScene" uid="uid://c786bn6uu3qvv" path="res://Scenes/DialogueManager/dialogue_manager.tscn" id="2_kgkt0"]
 [ext_resource type="PackedScene" uid="uid://di5642v8458n8" path="res://Scenes/Backgrounds/parallax_fg.tscn" id="3_ojoog"]
 [ext_resource type="PackedScene" uid="uid://c0d7t8nfb2168" path="res://Scenes/UI/PauseMenu/pauseMenu.tscn" id="4_yot7t"]
+[ext_resource type="Script" path="res://Scenes/Levels/Pause.gd" id="5_qmx4h"]
+[ext_resource type="PackedScene" uid="uid://68xiqq6tvp02" path="res://Scenes/Utils/Transition/transition.tscn" id="8_wifhg"]
 
 [sub_resource type="Environment" id="Environment_yhccr"]
 background_mode = 3
@@ -15,6 +17,7 @@ adjustment_enabled = true
 adjustment_brightness = 1.45
 
 [node name="LevelManager" type="Node2D"]
+script = ExtResource("1_6d3sg")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("1_hc20e")]
 offset = Vector2(0, -400)
@@ -23,8 +26,6 @@ transform = Transform2D(1, 0, 0, 1, 0, -400)
 [node name="LevelContainer" type="Node2D" parent="."]
 position = Vector2(-3, 0)
 
-[node name="Level" parent="LevelContainer" instance=ExtResource("2_4uk63")]
-
 [node name="ParallaxBackground2" parent="." instance=ExtResource("3_ojoog")]
 layer = 0
 offset = Vector2(0, 720)
@@ -32,9 +33,10 @@ transform = Transform2D(1, 0, 0, 1, 0, 720)
 
 [node name="DialogueManager" parent="." instance=ExtResource("2_kgkt0")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="InGameMenu" type="CanvasLayer" parent="."]
 
-[node name="Pause" type="Control" parent="CanvasLayer"]
+[node name="Pause" type="Control" parent="InGameMenu"]
+process_mode = 3
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -42,8 +44,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("5_qmx4h")
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Pause"]
+[node name="ColorRect" type="ColorRect" parent="InGameMenu/Pause"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,10 +55,10 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.054902, 0.054902, 0.054902, 0.733333)
 
-[node name="PauseMenuPanel" parent="CanvasLayer/Pause" instance=ExtResource("4_yot7t")]
+[node name="PauseMenuPanel" parent="InGameMenu/Pause" instance=ExtResource("4_yot7t")]
 layout_mode = 1
 
-[node name="LevelLost" type="Control" parent="CanvasLayer"]
+[node name="LevelLost" type="Control" parent="InGameMenu"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -64,7 +67,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/LevelLost"]
+[node name="ColorRect" type="ColorRect" parent="InGameMenu/LevelLost"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,8 +76,14 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.054902, 0.054902, 0.054902, 0.733333)
 
-[node name="PauseMenuPanel" parent="CanvasLayer/LevelLost" instance=ExtResource("4_yot7t")]
+[node name="PauseMenuPanel" parent="InGameMenu/LevelLost" instance=ExtResource("4_yot7t")]
 layout_mode = 1
+
+[node name="Transition" parent="." instance=ExtResource("8_wifhg")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_yhccr")
+
+[connection signal="exit_button" from="InGameMenu/Pause/PauseMenuPanel" to="." method="_on_pause_menu_panel_exit_button"]
+[connection signal="restart_button" from="InGameMenu/Pause/PauseMenuPanel" to="." method="_on_pause_menu_panel_restart_button"]
+[connection signal="resume_button" from="InGameMenu/Pause/PauseMenuPanel" to="." method="_on_pause_menu_panel_resume_button"]

@@ -1,4 +1,5 @@
-[gd_scene load_steps=71 format=3 uid="uid://dbhh1ux71x4xa"]
+
+[gd_scene load_steps=79 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://cahys4vfcc84i" path="res://Assets/1-Player-Bomb Guy/5-Fall/1.png" id="1_r6h51"]
@@ -63,6 +64,17 @@
 [ext_resource type="AudioStream" uid="uid://3vtqo4vw4dy3" path="res://Assets/sounds/dash.mp3" id="61_xw0a0"]
 [ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="62_fnfrv"]
 [ext_resource type="AudioStream" uid="uid://d3c74qv5vl7bp" path="res://Assets/sounds/Jump.wav" id="63_ug3rk"]
+[ext_resource type="Texture2D" uid="uid://muna1fh1t1a3" path="res://Assets/3-Explotion/1.png" id="61_lfr2c"]
+[ext_resource type="Texture2D" uid="uid://co5oq1dm7pmxx" path="res://Assets/3-Explotion/2.png" id="62_6nshx"]
+[ext_resource type="Texture2D" uid="uid://gc4s2p6sfcm8" path="res://Assets/3-Explotion/3.png" id="63_tt4t5"]
+[ext_resource type="Texture2D" uid="uid://bt5qxse1gkg4r" path="res://Assets/3-Explotion/4.png" id="64_rljfs"]
+[ext_resource type="Texture2D" uid="uid://c8pdi7jvl74ty" path="res://Assets/3-Explotion/5.png" id="65_x7vvl"]
+[ext_resource type="Texture2D" uid="uid://boswglwt5jhnm" path="res://Assets/3-Explotion/6.png" id="66_cmgx7"]
+[ext_resource type="Texture2D" uid="uid://c3pt72xn4qkxc" path="res://Assets/3-Explotion/7.png" id="67_hf1m2"]
+[ext_resource type="Texture2D" uid="uid://embk53el0od8" path="res://Assets/3-Explotion/8.png" id="68_3mpc7"]
+[ext_resource type="Texture2D" uid="uid://dbhfuc7m4205p" path="res://Assets/3-Explotion/9.png" id="69_kn1bv"]
+[ext_resource type="Texture2D" uid="uid://drv7otrkr455y" path="res://Assets/3-Explotion/10.png" id="70_ngy7a"]
+
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ie7vj"]
 animations = [{
@@ -411,6 +423,44 @@ _data = {
 "sword_play": SubResource("Animation_x6et0")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_r0co8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("61_lfr2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_6nshx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_tt4t5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_rljfs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_x7vvl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_cmgx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("67_hf1m2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("68_3mpc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("69_kn1bv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("70_ngy7a")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_bet5j")
 
@@ -435,6 +485,8 @@ editor_draw_limits = true
 editor_draw_drag_margin = true
 
 [node name="Dash" parent="." instance=ExtResource("52_l6igk")]
+
+[node name="DashGhosts" type="Node2D" parent="."]
 
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -470,6 +522,7 @@ libraries = {
 "": SubResource("AnimationLibrary_o30ji")
 }
 
+
 [node name="dashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("61_xw0a0")
 
@@ -478,6 +531,13 @@ stream = ExtResource("62_fnfrv")
 
 [node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("63_ug3rk")
+
+[node name="Explosion" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = SubResource("SpriteFrames_r0co8")
+frame = 9
+frame_progress = 1.0
+
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="sword_slash" to="." method="_on_sword_slash_animation_finished"]

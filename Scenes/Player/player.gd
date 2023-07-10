@@ -1,9 +1,7 @@
 extends CharacterBody2D
 
 
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-#var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+signal player_died
 
 #for dash
 @onready var dash=$Dash
@@ -14,7 +12,7 @@ extends CharacterBody2D
 @export var can_dash=true
 
 
-@export var actual_speed = 400.0
+@export var actual_speed = 300.0 #400 chiilo
 @export var actual_jump_strength = 50000.0
 @export var actual_double_jump_strength = 60000.0
 @export var maximum_jumps = 2
@@ -40,7 +38,15 @@ var facing = "right"
 var is_alive = false
 var is_attacking=false
 
+func _ready():
+	is_alive = true
+
 func _physics_process(delta):
+	
+	if Input.is_action_just_pressed("dash"):
+		
+		#kill()
+		pass
 	
 	# Add the gravity.
 	if not is_on_floor():
@@ -108,6 +114,9 @@ func _physics_process(delta):
 	
 	elif is_double_jumping:
 		jumps_made += 1
+		dash.start_dash($AnimatedSprite2D,dash_duration)
+		can_dash=false
+		$DashTimer.start()
 		if jumps_made <= maximum_jumps:
 			velocity.y = -double_jump_strength*delta
 				
@@ -161,19 +170,33 @@ func animation():
 	elif is_running: $AnimatedSprite2D.play("Run")
 	elif is_idling: $AnimatedSprite2D.play("Idle")
 	
-	
 	pass
 
-func kill():
-	pass
+func kill(wait_time = 0.5):
+	if not is_alive : return
+	
+	is_alive = false
+	$AnimatedSprite2D.visible = false
+	$sword_slash.visible = false
+	$Dash.visible = false
+	$DashGhosts.visible = false
+	$Explosion.visible = true
+	$Explosion.play("default")
+	$CollisionShape2D.disabled = true
+	$sword_collision/CollisionShape2D.disabled = true
+	emit_signal("player_died")
+	set_physics_process(false)
+	set_process(false)
+	
+#	await get_tree().create_timer(wait_time).timeout
+	#queue_free()
+
 
 
 func _on_dash_timer_timeout():
 	can_dash=true
 	
 	
-
-
 
 func _on_sword_slash_animation_finished():
 	$sword_slash.visible=false
