@@ -12,5 +12,11 @@ func _on_exit_pressed():
 
 
 func _on_play_pressed():
-	Transition.change_scene("res://Scenes/UI/Main/main_menu2.tscn")
-	pass # Replace with function body.
+	if Globals.level_to_load == 0:
+		Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")	
+	else :
+		pass
+
+
+func _on_instructiuons_pressed():
+	Transition.change_scene("res://Scenes/UI/Control/control.tscn")

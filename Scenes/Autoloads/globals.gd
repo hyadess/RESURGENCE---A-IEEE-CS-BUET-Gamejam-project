@@ -2,7 +2,7 @@ extends Node2D
 
 const SAVE_FILE = "user://save.dat"
 
-var level_to_load:int = 2
+var level_to_load:int = 0
 var max_level_reached:int = 0
 @export var total_levels:int = 7
 var level_lost = false

@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://3ur6ixqw36vq"]
+
+[ext_resource type="Texture2D" uid="uid://bsp1t22ehlvke" path="res://Assets/reverse.png" id="1_1wrtx"]
+[ext_resource type="Script" path="res://Scenes/Utils/Reverse/reverse.gd" id="1_obw63"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lgbyj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1wrtx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l56ba"]
+radius = 282.007
+
+[node name="Reverse" type="Node2D"]
+script = ExtResource("1_obw63")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lgbyj")
+
+[node name="Area2D" type="Area2D" parent="." groups=["Reverse"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-6, 8)
+shape = SubResource("CircleShape2D_l56ba")

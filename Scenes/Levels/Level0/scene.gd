@@ -14,7 +14,8 @@ var call_again = true
 
 var show_starter_dialogue = false
 
-var dialogues = ["Hello young knight. Where are you going?", "To the main land, on the other side of the forest.", "You're a brave one, aren't you?", "People don't usually dare to go there.", "Why?", "No one ever comes back alive. People say they meet their inner demons there.", "That's just a myth, old man."]
+var dialogues = ["Hello young knight. Where are you going?", "To a foreign land, on the other side of the forest.", "You're a brave one, aren't you?", "People don't usually dare to go there.", "Why?", "No one ever comes back alive. People say they meet their inner demons there.", "That's just a myth, old man."]
+var images = ["Bigguy", "player", "Bigguy","Bigguy","player", "Bigguy","player"]
 var shown_dialogues = false
 var show_mirror_dialogue = false
 var met_ghost = false
@@ -78,7 +79,7 @@ func _on_start_follow_timer_timeout():
 func _on_area_2d_area_entered(area):
 	#need to show dialogues
 	if not shown_dialogues:
-		get_parent().get_parent().play_dialogues(dialogues)
+		get_parent().get_parent().play_dialogues(dialogues, images)
 		shown_dialogues = true
 
 
@@ -86,7 +87,7 @@ func _on_area_2d_area_entered(area):
 func _on_area_before_mirror_area_entered(area):
 	#need to show dialogues
 	if not show_mirror_dialogue:
-		get_parent().get_parent().play_dialogues(["Strange! What is this mirror doing here?"])
+		get_parent().get_parent().play_dialogues(["Strange! What is this mirror doing here?"], ["player"])
 		show_mirror_dialogue = true
 
 
@@ -94,7 +95,7 @@ func _on_area_in_front_of_mirror_area_entered(area):
 	if not met_ghost:
 		met_ghost = true
 		$Node2D.visible = true
-		get_parent().get_parent().play_dialogues(["What is that???"])
+		get_parent().get_parent().play_dialogues(["What is that???"], ["player"])
 		$Player.restrict_movement = true
 		await get_tree().create_timer(2).timeout
 		$Transition.fade_in()
@@ -102,7 +103,7 @@ func _on_area_in_front_of_mirror_area_entered(area):
 		$Transition.fade_out()
 		$Node2D.visible = false
 		$"Mirror-01".visible = false
-		get_parent().get_parent().play_dialogues(["What was that???"])
+		get_parent().get_parent().play_dialogues(["What was that light??? Where did the mirror go?"], ["player"])
 		await get_tree().create_timer(3).timeout
 		emit_signal("level_clear")
 		

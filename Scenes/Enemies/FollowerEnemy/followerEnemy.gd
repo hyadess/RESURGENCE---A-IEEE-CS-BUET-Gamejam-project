@@ -9,7 +9,7 @@ var health = 100
 var dying = false
 
 func _ready():
-	recorded_positions = get_parent().get_parent().recorded_positions
+	recorded_positions= get_parent().get_parent().recorded_positions
 	$AnimatedSprite2D.play("Run")
 
 func _physics_process(delta):

@@ -4,6 +4,7 @@ signal dialogue_start
 signal dialogue_stop
 
 var _dialogues = []
+var _images = []
 var _curr_no = 0
 
 @onready var _dialogue_label = $ColorRect/Dialogue
@@ -20,8 +21,9 @@ func _ready() -> void:
 	is_running = false
 
 
-func set_dialogue(lines):
+func set_dialogue(lines, images):
 	_dialogues = lines
+	_images = images
 	_curr_no = 0
 	
 func start_dialogue():
@@ -35,6 +37,7 @@ func start_dialogue():
 
 func _show_dialogue():
 	_dialogue_label.show_dialogue(_dialogues[_curr_no])
+	$Sprite2D.texture = load("res://Assets/DialogueHeads/" + _images[_curr_no] + ".png")
 	var speed = 0.9
 #	if play_audio:
 #		yield($TextToSpeech.say(_dialogues[_curr_no],  TextToSpeech.VOICE_SLT, speed), "completed")
