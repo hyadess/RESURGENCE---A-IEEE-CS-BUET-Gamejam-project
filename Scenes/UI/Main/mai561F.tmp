@@ -32,14 +32,13 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -266.0
-offset_top = 149.0
-offset_right = 266.0
-offset_bottom = 287.0
+offset_left = -226.0
+offset_top = 100.0
+offset_right = 226.0
+offset_bottom = 219.0
 grow_horizontal = 2
 theme = ExtResource("1_3dcs5")
-text = "resurgence"
-horizontal_alignment = 1
+text = "Game Title"
 
 [node name="Play" type="Button" parent="."]
 layout_mode = 1

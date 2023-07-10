@@ -425,7 +425,6 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="slash1"]
 position = Vector2(34.1176, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_iki3v")
 
 [node name="slash2" type="Area2D" parent="."]
@@ -433,7 +432,6 @@ collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="slash2"]
 position = Vector2(-32.9412, 0.588235)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_kdnl0")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
