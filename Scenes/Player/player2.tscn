@@ -542,7 +542,7 @@ script = ExtResource("1_bet5j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ie7vj")
-animation = &"Attack1"
+animation = &"Run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
@@ -557,6 +557,7 @@ limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 drag_top_margin = 0.5
+drag_right_margin = 0.15
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -569,6 +570,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="sword_slash" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(11, 6)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_d26mh")

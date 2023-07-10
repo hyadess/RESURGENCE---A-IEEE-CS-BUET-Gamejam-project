@@ -8,14 +8,17 @@ var _curr_no = 0
 
 @onready var _dialogue_label = $ColorRect/Dialogue
 @onready var _dialogue_back = $ColorRect
+@onready var _speaker = $Sprite2D
 @export var is_running:bool = false
 @export var play_audio:bool = false
 
 
 func _ready() -> void:
 	_dialogue_label.visible = false
-	is_running = false
 	_dialogue_back.visible = false
+	_speaker.visible = false
+	is_running = false
+
 
 func set_dialogue(lines):
 	_dialogues = lines
@@ -26,6 +29,7 @@ func start_dialogue():
 	_dialogue_back.visible = true
 	is_running = true
 	_dialogue_label.visible = true
+	_speaker.visible = true
 	_show_dialogue()
 	Globals.showing_dialogue = true
 
@@ -38,6 +42,7 @@ func _show_dialogue():
 func _stop_dialogue():
 	_dialogue_back.visible = false
 	_dialogue_label.visible = false
+	_speaker.visible = false
 	is_running = false
 	emit_signal("dialogue_stop")
 	Globals.showing_dialogue = false
