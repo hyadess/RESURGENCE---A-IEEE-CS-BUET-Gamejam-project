@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://dbhh1ux71x4xa"]
+[gd_scene load_steps=74 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://d3kr5b4u2jxko" path="res://Assets/Knight_player/Attack_KG_1.png" id="2_d71x0"]
@@ -473,7 +473,6 @@ stream = ExtResource("30_1shp5")
 [node name="dashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("31_nsih4")
 
-[connection signal="dash_stopped" from="Dash" to="." method="_on_dash_dash_stopped"]
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -481,6 +480,7 @@ position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_v45uk")
 debug_color = Color(0, 0.160784, 0.196078, 0.419608)
 
+[connection signal="dash_stopped" from="Dash" to="." method="_on_dash_dash_stopped"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="sword_slash" to="." method="_on_sword_slash_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
