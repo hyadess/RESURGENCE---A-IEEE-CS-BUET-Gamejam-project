@@ -9,7 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="7_ysa0q"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2dui"]
-radius = 11.0
+radius = 12.3529
 height = 42.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_623g4"]
@@ -257,7 +257,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kmkn2")
 }],
-"loop": false,
+"loop": true,
 "name": &"bombing",
 "speed": 10.0
 }, {
@@ -382,6 +382,7 @@ animations = [{
 }]
 
 [node name="reaper" type="CharacterBody2D"]
+scale = Vector2(1.7, 1.7)
 script = ExtResource("1_rh4x6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -390,19 +391,31 @@ shape = SubResource("CapsuleShape2D_a2dui")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_07h1k")
-animation = &"attack"
+animation = &"bombing"
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 3.0
 one_shot = true
 
 [node name="bomb_timer" type="Timer" parent="."]
-wait_time = 6.0
+wait_time = 10.0
 one_shot = true
 
 [node name="slashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_ysa0q")
 
+[node name="soul_timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="bombing_time" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
 [connection signal="timeout" from="bomb_timer" to="." method="_on_bomb_timer_timeout"]
+[connection signal="timeout" from="soul_timer" to="." method="_on_soul_timer_timeout"]
+[connection signal="timeout" from="bombing_time" to="." method="_on_bombing_time_timeout"]
