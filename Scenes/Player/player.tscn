@@ -368,7 +368,7 @@ animations = [{
 size = Vector2(61, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i8gg"]
-size = Vector2(50, 27)
+size = Vector2(59, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r0co8"]
 animations = [{
@@ -413,7 +413,7 @@ radius = 15.0
 height = 60.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-collision_mask = 7
+collision_mask = 6
 script = ExtResource("1_bet5j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -469,7 +469,7 @@ disabled = true
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision2"]
-position = Vector2(-32, 1.5)
+position = Vector2(-36.5, 1)
 shape = SubResource("RectangleShape2D_8i8gg")
 disabled = true
 
@@ -489,6 +489,7 @@ stream = ExtResource("30_1shp5")
 stream = ExtResource("31_nsih4")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 6
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(1, 0)

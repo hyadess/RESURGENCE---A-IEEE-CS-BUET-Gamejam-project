@@ -190,6 +190,7 @@ autoplay = "default"
 frame_progress = 0.637682
 
 [node name="Area2D" type="Area2D" parent="." groups=["Key"]]
+collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_i3mgu")

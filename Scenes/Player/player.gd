@@ -241,10 +241,10 @@ func take_damage(val):
 
 
 func _on_sword_collision_body_entered(body):
-	if body.is_in_group("FollowerEnemy"):
+	if body.is_in_group("FollowerEnemy") or body.is_in_group("MimicEnemy") :
 		body.take_damage(attack_damage)
 
 
 func _on_sword_collision_2_body_entered(body):
-	if body.is_in_group("FollowerEnemy"):
+	if body.is_in_group("FollowerEnemy") or body.is_in_group("MimicEnemy"):
 		body.take_damage(attack_damage)

@@ -12,10 +12,13 @@ func _on_exit_pressed():
 	get_tree().quit()
 
 func _on_play_pressed():
-	if Globals.level_to_load == 0:
-		Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")	
-	else :
-		Transition.change_scene("res://Scenes/UI/ContinueOrNew/continue_or_new.tscn")
+
+
+  if Globals.level_to_load == 0:
+	  Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")	
+  else :
+	  Transition.change_scene("res://Scenes/UI/ContinueOrNew/continue_or_new.tscn")
+
 
 func _on_instructiuons_pressed():
 	Transition.change_scene("res://Scenes/UI/Control/control.tscn")

@@ -64,4 +64,5 @@ func _on_level_timer_timeout():
 
 
 func _on_mimic_enemy_mimic_enemy_died():
+	print("okay")
 	emit_signal("level_clear")
