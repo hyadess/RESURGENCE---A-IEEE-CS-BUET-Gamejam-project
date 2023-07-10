@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://dbhh1ux71x4xa"]
+[gd_scene load_steps=72 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://d3kr5b4u2jxko" path="res://Assets/Knight_player/Attack_KG_1.png" id="2_d71x0"]
@@ -362,7 +362,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyt2p"]
-size = Vector2(32, 25)
+size = Vector2(61, 29)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8i8gg"]
+size = Vector2(50, 27)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r0co8"]
 animations = [{
@@ -412,7 +415,9 @@ script = ExtResource("1_bet5j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ie7vj")
-animation = &"Run"
+animation = &"Dash"
+frame = 3
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)
@@ -449,11 +454,17 @@ frame = 5
 frame_progress = 1.0
 
 [node name="sword_collision" type="Area2D" parent="."]
-visible = false
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision"]
-position = Vector2(35, -0.5)
+position = Vector2(41.5, 1.5)
 shape = SubResource("RectangleShape2D_yyt2p")
+
+[node name="sword_collision2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision2"]
+position = Vector2(-32, 1.5)
+shape = SubResource("RectangleShape2D_8i8gg")
 
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -470,4 +481,6 @@ debug_color = Color(0, 0.160784, 0.196078, 0.419608)
 
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="sword_slash" to="." method="_on_sword_slash_animation_finished"]
+[connection signal="body_entered" from="sword_collision" to="." method="_on_sword_collision_body_entered"]
+[connection signal="body_entered" from="sword_collision2" to="." method="_on_sword_collision_2_body_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

@@ -20,6 +20,9 @@ signal got_key
 @export var gravity = 4500
 @export var max_fall_speed = 10000
 
+@export var attack_enabled = true
+@export var health = 100
+@export var attack_damage = 100
 
 var jumps_made = 0
 var speed = 0
@@ -40,7 +43,8 @@ var is_alive = false
 var playing_attack_animiation = false
 var rng = RandomNumberGenerator.new()
 var restrict_movement = false
-
+@onready var sword_collision_x = $sword_collision/CollisionShape2D.position.x
+@onready var sword_collision_x2 = $sword_collision2/CollisionShape2D.position.x
 func _ready():
 	is_alive = true
 
@@ -85,10 +89,11 @@ func _physics_process(delta):
 			
 			
 			
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") and attack_enabled:
 			$sword_slash.visible=true
 			$sword_slash.play("slash")
 			$sword_collision.visible=true
+			$sword_collision/CollisionShape2D.disabled = false
 			if(playing_attack_animiation == false):
 				playing_attack_animiation = true
 				var attack_idx = randi_range(2 ,3)
@@ -164,8 +169,13 @@ func animation():
 	
 	if facing == "left":
 		$AnimatedSprite2D.flip_h = true
+		$sword_collision/CollisionShape2D.position.x = -sword_collision_x
+		$sword_collision2/CollisionShape2D.position.x = -sword_collision_x2
+		
 	else :
 		$AnimatedSprite2D.flip_h = false
+		$sword_collision/CollisionShape2D.position.x = sword_collision_x
+		$sword_collision2/CollisionShape2D.position.x = sword_collision_x2
 	if not playing_attack_animiation:	
 		if is_jumping or is_double_jumping: $AnimatedSprite2D.play("Jump")
 		elif is_running: $AnimatedSprite2D.play("Run")
@@ -202,13 +212,29 @@ func _on_sword_slash_animation_finished():
 	$sword_slash.visible=false
 	$sword_collision.visible=false
 	playing_attack_animiation = false
+	$sword_collision/CollisionShape2D.disabled = true
 	$AnimatedSprite2D.play("Idle")
 	
 
-
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("FollowerEnemy"):
+	if area.is_in_group("FollowerEnemy") and not area.get_parent().dying:
 		kill()
 	
 	elif area.is_in_group("Key"):
 		emit_signal("got_key")
+		
+
+func take_damage(val):
+	health = min(0, health - val)
+	if health <= 0:
+		kill()
+
+
+func _on_sword_collision_body_entered(body):
+	if body.is_in_group("FollowerEnemy"):
+		body.take_damage(attack_damage)
+
+
+func _on_sword_collision_2_body_entered(body):
+	if body.is_in_group("FollowerEnemy"):
+		body.take_damage(attack_damage)

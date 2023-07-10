@@ -5,6 +5,8 @@ var target_position
 var do_follow = false;
 var new_global_position;
 var position_index = 0
+var health = 100
+var dying = false
 
 func _ready():
 	recorded_positions = get_parent().get_parent().recorded_positions
@@ -31,7 +33,14 @@ func _physics_process(delta):
 #	pass
 
 func kill():
-	pass
+	dying = true
+	explosion()
+	$AnimatedSprite2D.visible = false
+	$Area2D.visible = false
+	$CollisionShape2D.disabled = true
+	$Area2D/CollisionShape2D.disabled = true
+	await $Explosion.animation_finished
+	queue_free()
 
 #
 #func _on_dash_timer_timeout():
@@ -42,7 +51,7 @@ func _on_start_follow_timer_timeout():
 
 
 func _on_follow_timer_timeout():
-	if(do_follow and recorded_positions.size() > position_index):
+	if(not dying and do_follow and recorded_positions.size() > position_index):
 		new_global_position = recorded_positions[position_index]
 		position_index += 1
 		if(new_global_position.x < global_position.x): 
@@ -67,3 +76,8 @@ func explosion(reverse = false):
 			$Explosion.play("default")
 		else:
 			$Explosion.play_backwards("default")
+			
+func take_damage(val):
+	health = min(0, health - val)
+	if(health <= 0):
+		kill()
