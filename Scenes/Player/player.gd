@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 
 signal player_died
+signal got_key
 
 #for dash
 @onready var dash=$Dash
@@ -38,6 +39,7 @@ var facing = "right"
 var is_alive = false
 var playing_attack_animiation = false
 var rng = RandomNumberGenerator.new()
+var restrict_movement = false
 
 func _ready():
 	is_alive = true
@@ -56,7 +58,7 @@ func _physics_process(delta):
 		velocity.y = max_fall_speed
 		
 	
-	if not Globals.showing_dialogue :
+	if not Globals.showing_dialogue and not restrict_movement :
 		
 		#dash
 		if Input.is_action_just_pressed("dash") and dash.is_dashing()==false and can_dash==true and not is_idling :
@@ -95,9 +97,9 @@ func _physics_process(delta):
 	
 	# States
 	is_falling = velocity.y > 0.0 and not is_on_floor()
-	is_jumping = Input.is_action_just_pressed("jump") and is_on_floor()
-	is_double_jumping = Input.is_action_just_pressed("jump") and (is_falling or is_jumping or not is_on_floor())
-	is_jump_cancelled = Input.is_action_just_released("jump") and velocity.y < 0.0
+	is_jumping = Input.is_action_just_pressed("jump") and is_on_floor() and not restrict_movement
+	is_double_jumping = Input.is_action_just_pressed("jump") and (is_falling or is_jumping or not is_on_floor()) and not restrict_movement
+	is_jump_cancelled = Input.is_action_just_released("jump") and velocity.y < 0.0 
 	is_idling = is_on_floor() and not (Input.is_action_pressed("left") or Input.is_action_pressed("right"))
 	is_running = is_on_floor() and (Input.is_action_pressed("left") or Input.is_action_pressed("right"))
 	is_grounded = is_on_floor()
@@ -199,7 +201,14 @@ func _on_dash_timer_timeout():
 func _on_sword_slash_animation_finished():
 	$sword_slash.visible=false
 	$sword_collision.visible=false
-	$sword.visible=false
 	playing_attack_animiation = false
 	$AnimatedSprite2D.play("Idle")
 	
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("FollowerEnemy"):
+		kill()
+	
+	elif area.is_in_group("Key"):
+		emit_signal("got_key")

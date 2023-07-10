@@ -95,6 +95,7 @@ func _on_area_in_front_of_mirror_area_entered(area):
 		met_ghost = true
 		$Node2D.visible = true
 		get_parent().get_parent().play_dialogues(["What is that???"])
+		$Player.restrict_movement = true
 		await get_tree().create_timer(2).timeout
 		$Transition.fade_in()
 		await get_tree().create_timer(2).timeout
