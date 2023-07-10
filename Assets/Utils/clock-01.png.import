@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bht4sqxiidxad"
-path="res://.godot/imported/Generic Male NPCs.png-f9b3062ce6ecb926e0655414ae74fd74.ctex"
+uid="uid://bh3gr1dutuerr"
+path="res://.godot/imported/clock-01.png-8217336189008277af982c3c885ad676.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Generic Male NPCs.png"
-dest_files=["res://.godot/imported/Generic Male NPCs.png-f9b3062ce6ecb926e0655414ae74fd74.ctex"]
+source_file="res://Assets/Utils/clock-01.png"
+dest_files=["res://.godot/imported/clock-01.png-8217336189008277af982c3c885ad676.ctex"]
 
 [params]
 

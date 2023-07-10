@@ -19,8 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://cayulwee2dcc4" path="res://Assets/White Slash Thin/File4.png" id="56_4eye4"]
 [ext_resource type="Texture2D" uid="uid://rr68057h151l" path="res://Assets/White Slash Thin/File5.png" id="57_ttivn"]
 [ext_resource type="Texture2D" uid="uid://c3lwlfi0c61e6" path="res://Assets/White Slash Thin/File6.png" id="58_kvmsl"]
-[ext_resource type="Texture2D" uid="uid://be61e07mtfaqm" path="res://Assets/sword_pic.png" id="59_o5625"]
-[ext_resource type="Script" path="res://Scenes/Player/sword.gd" id="60_qupxa"]
 [ext_resource type="Texture2D" uid="uid://muna1fh1t1a3" path="res://Assets/3-Explotion/1.png" id="61_lfr2c"]
 [ext_resource type="Texture2D" uid="uid://co5oq1dm7pmxx" path="res://Assets/3-Explotion/2.png" id="62_6nshx"]
 [ext_resource type="Texture2D" uid="uid://gc4s2p6sfcm8" path="res://Assets/3-Explotion/3.png" id="63_tt4t5"]
@@ -369,139 +367,6 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yyt2p"]
 size = Vector2(32, 25)
 
-[sub_resource type="Animation" id="Animation_s6hy7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("59_o5625")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0.08, 0.08)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.605629]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(4, 23)]
-}
-
-[sub_resource type="Animation" id="Animation_x6et0"]
-resource_name = "sword_play"
-length = 0.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [ExtResource("59_o5625"), ExtResource("59_o5625"), ExtResource("59_o5625"), ExtResource("59_o5625")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 0, 0, 0, 0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.08, 0.08), Vector2(0.08, 0.08), Vector2(0.06, 0.06), Vector2(0.08, 0.08), Vector2(0.08, 0.08)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".:rotation")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.605629, 1.96873, 3.17999, 5.14872, 5.75435]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath(".:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(-1, 4), Vector2(4, 23), Vector2(-11, 26), Vector2(-22, 8), Vector2(-18, 3)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_o30ji"]
-_data = {
-"RESET": SubResource("Animation_s6hy7"),
-"sword_play": SubResource("Animation_x6et0")
-}
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_r0co8"]
 animations = [{
 "frames": [{
@@ -540,7 +405,12 @@ animations = [{
 "speed": 15.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v45uk"]
+radius = 15.0
+height = 60.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_mask = 6
 script = ExtResource("1_bet5j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -588,20 +458,6 @@ visible = false
 position = Vector2(35, -0.5)
 shape = SubResource("RectangleShape2D_yyt2p")
 
-[node name="sword" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(4, 23)
-rotation = 0.605629
-scale = Vector2(0.08, 0.08)
-texture = ExtResource("59_o5625")
-script = ExtResource("60_qupxa")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="sword"]
-speed_scale = 1.7
-libraries = {
-"": SubResource("AnimationLibrary_o30ji")
-}
-
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 visible = false
 sprite_frames = SubResource("SpriteFrames_r0co8")
@@ -618,5 +474,13 @@ stream = ExtResource("30_1shp5")
 stream = ExtResource("31_nsih4")
 
 [connection signal="dash_stopped" from="Dash" to="." method="_on_dash_dash_stopped"]
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 0)
+shape = SubResource("CapsuleShape2D_v45uk")
+debug_color = Color(0, 0.160784, 0.196078, 0.419608)
+
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="animation_finished" from="sword_slash" to="." method="_on_sword_slash_animation_finished"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

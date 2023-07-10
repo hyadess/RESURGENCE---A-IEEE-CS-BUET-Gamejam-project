@@ -4,9 +4,10 @@ var recorded_positions
 var target_position
 var do_follow = false;
 var new_global_position;
+var position_index = 0
 
 func _ready():
-	recorded_positions = get_parent().recorded_positions
+	recorded_positions = get_parent().get_parent().recorded_positions
 	$AnimatedSprite2D.play("Run")
 
 func _physics_process(delta):
@@ -41,11 +42,9 @@ func _on_start_follow_timer_timeout():
 
 
 func _on_follow_timer_timeout():
-#	print("here")
-#	print("size :", recorded_positions.size())
-	if(do_follow and recorded_positions.size() > 0):
-		print(recorded_positions[0])
-		new_global_position = recorded_positions[0]
+	if(do_follow and recorded_positions.size() > position_index):
+		new_global_position = recorded_positions[position_index]
+		position_index += 1
 		if(new_global_position.x < global_position.x): 
 			$AnimatedSprite2D.flip_h = true
 			$Eyes.flip_h = true
@@ -53,8 +52,7 @@ func _on_follow_timer_timeout():
 			$AnimatedSprite2D.flip_h = false
 			$Eyes.flip_h = false
 		global_position = new_global_position
-		#global_position = global_position.move_toward(recorded_positions[0], _delta * 4000)
-		recorded_positions.remove_at(0)
+		
 
 func set_animation(animation_name):
 	$AnimatedSprite2D.play(animation_name)

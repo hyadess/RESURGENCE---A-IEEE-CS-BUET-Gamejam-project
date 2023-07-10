@@ -4,7 +4,6 @@ var level : Node
 var level_no : int
 
 
-
 func _ready():
 	load_level(Globals.level_to_load)
 
@@ -19,6 +18,7 @@ func _process(delta):
 	pass
 	
 func load_level(level_no = 0):
+	$InGameMenu/TimerIndicator.visible = false
 	$InGameMenu/Pause.visible = false
 	$DialogueManager._stop_dialogue()
 	self.level_no = level_no
@@ -76,3 +76,10 @@ func _on_pause_menu_panel_resume_button():
 func play_dialogues(dialogues):
 	$DialogueManager.set_dialogue(dialogues)
 	$DialogueManager.start_dialogue()
+
+func activate_level_timer():
+	$InGameMenu/TimerIndicator.visible = true
+	$InGameMenu/TimerIndicator/TextureProgressBar.value = 100
+	
+func update_level_timer(val):
+	$InGameMenu/TimerIndicator/TextureProgressBar.value = val
