@@ -6,15 +6,12 @@ var recorded_positions := []
 signal level_clear
 signal level_lost
 
-@export var record_positions_enable = false
 
 var camera : Camera2D
 var is_player_alive : bool
 var call_again = true
-var met_enemy = false
-var ghost_removed = false
 
-var dialogues = ["You again! Who are you? ... What are you?", "I am you", "What?", "I am a part of you. A part that you want to lose. I am you trauma", "...", "There is no escape from me. I will chase you to the end", "See you soon"]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_player_alive = true
@@ -25,10 +22,7 @@ func _ready():
 func _process(delta):
 	
 	if call_again: check_lose_condition()
-	if call_again: check_win_condition()
-	
-	if not Globals.showing_dialogue and met_enemy and not ghost_removed:
-		remove_ghost()
+	if call_again: check_win_condition()	
 	
 	if Input.is_action_just_pressed("force_quit"):
 		get_tree().quit()
@@ -56,7 +50,7 @@ func add_position(pos):
 	
 	
 func _on_record_pos_timer_timeout():
-	if is_player_alive and record_positions_enable:
+	if is_player_alive:
 		add_position($Player.global_position)
 		
 # ================================== Record Position ================================	
@@ -65,27 +59,3 @@ func _on_start_follow_timer_timeout():
 	#$Player2.do_follow = true
 	pass
 
-
-
-func _on_area_2d_area_entered(area):
-	if not met_enemy:
-		met_enemy = true
-		$FollowerEnemy.set_animation("Idle")
-		$FollowerEnemy.flip_h()
-		$FollowerEnemy.visible = true
-		$FollowerEnemy.explosion()
-		get_parent().get_parent().play_dialogues(dialogues)
-
-func remove_ghost():
-	ghost_removed = true
-	$FollowerEnemy.set_animation("Idle")
-	$FollowerEnemy.flip_h()
-	$FollowerEnemy.explosion()
-	$FollowerEnemy/AnimatedSprite2D.visible = false
-	$FollowerEnemy/Eyes.visible = false
-	get_parent().get_parent().play_dialogues(["Wait"])
-	await $FollowerEnemy/Explosion.animation_finished
-	$FollowerEnemy.visible = false
-	
-	await get_tree().create_timer(1).timeout
-	emit_signal("level_clear")
