@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://dbhh1ux71x4xa"]
+[gd_scene load_steps=75 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://d3kr5b4u2jxko" path="res://Assets/Knight_player/Attack_KG_1.png" id="2_d71x0"]
@@ -464,6 +464,7 @@ position = Vector2(41.5, 1.5)
 shape = SubResource("RectangleShape2D_yyt2p")
 
 [node name="sword_collision2" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision2"]
 position = Vector2(-32, 1.5)
