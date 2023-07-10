@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dbhh1ux71x4xa"]
+[gd_scene load_steps=78 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://d3kr5b4u2jxko" path="res://Assets/Knight_player/Attack_KG_1.png" id="2_d71x0"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bbhoat1kgat0y" path="res://Assets/Knight_player/Jump_KG_1.png" id="7_wjhlp"]
 [ext_resource type="Texture2D" uid="uid://cug26x13aqoq4" path="res://Assets/Knight_player/Fall_KG_1.png" id="8_mnypt"]
 [ext_resource type="Texture2D" uid="uid://djtmbodtan7l0" path="res://Assets/Knight_player/Walking_KG_1.png" id="9_0myvq"]
+[ext_resource type="Texture2D" uid="uid://biu13y0u0dvk7" path="res://Assets/Knight_player/Dying_KG_2.png" id="9_ugyed"]
 [ext_resource type="AudioStream" uid="uid://d3c74qv5vl7bp" path="res://Assets/sounds/Jump.wav" id="29_gobtb"]
 [ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="30_1shp5"]
 [ext_resource type="AudioStream" uid="uid://3vtqo4vw4dy3" path="res://Assets/sounds/dash.mp3" id="31_nsih4"]
@@ -153,6 +154,14 @@ region = Rect2(100, 0, 100, 64)
 [sub_resource type="AtlasTexture" id="AtlasTexture_pvy4n"]
 atlas = ExtResource("8_mnypt")
 region = Rect2(200, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7r4li"]
+atlas = ExtResource("9_ugyed")
+region = Rect2(400, 0, 100, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs8sq"]
+atlas = ExtResource("9_ugyed")
+region = Rect2(500, 0, 100, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jn5it"]
 atlas = ExtResource("9_0myvq")
@@ -309,6 +318,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_7r4li")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xs8sq")
+}],
+"loop": true,
+"name": &"Lie",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_jn5it")
 }, {
 "duration": 1.0,
@@ -418,9 +438,8 @@ script = ExtResource("1_bet5j")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ie7vj")
-animation = &"Dash"
-frame = 3
-frame_progress = 1.0
+animation = &"Idle"
+frame_progress = 0.902477
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 1)

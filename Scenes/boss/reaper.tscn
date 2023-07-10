@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://ckqoi6bpghkwl"]
+[gd_scene load_steps=67 format=3 uid="uid://ckqoi6bpghkwl"]
 
 [ext_resource type="Script" path="res://Scenes/boss/reaper.gd" id="1_rh4x6"]
 [ext_resource type="Texture2D" uid="uid://dvmccy3jlmu6l" path="res://Assets/reaper/HostileAttackReaper-Sheet.png" id="1_s35ws"]
@@ -7,6 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://d2oognyej1jbo" path="res://Assets/reaper/HostileIdleReaper-Sheet.png" id="4_owkei"]
 [ext_resource type="Texture2D" uid="uid://dfcfnpiptxwop" path="res://Assets/reaper/HostileRunningReaper-Sheet.png" id="5_onf8x"]
 [ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="7_ysa0q"]
+[ext_resource type="Texture2D" uid="uid://wup71bxhw32" path="res://Assets/Blue Slash Thin/File1.png" id="8_vroe7"]
+[ext_resource type="Texture2D" uid="uid://dlgdtgjld35a8" path="res://Assets/Blue Slash Thin/File2.png" id="9_272gs"]
+[ext_resource type="Texture2D" uid="uid://eu0ide4dkqng" path="res://Assets/Blue Slash Thin/File3.png" id="10_v6qts"]
+[ext_resource type="Texture2D" uid="uid://crqbgfmscpt3y" path="res://Assets/Blue Slash Thin/File4.png" id="11_s8jy2"]
+[ext_resource type="Texture2D" uid="uid://g5ij8af336yx" path="res://Assets/Blue Slash Thin/File5.png" id="12_h3jey"]
+[ext_resource type="Texture2D" uid="uid://difhn8y67gxu8" path="res://Assets/Blue Slash Thin/File6.png" id="13_vlm3c"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_a2dui"]
 radius = 12.3529
@@ -237,9 +243,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tunab")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
-"speed": 15.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -259,7 +265,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"bombing",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -387,6 +393,32 @@ size = Vector2(44.1176, 22.3529)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdnl0"]
 size = Vector2(44.1176, 22.9412)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_kcd0q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_vroe7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_272gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_v6qts")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_s8jy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_h3jey")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_vlm3c")
+}],
+"loop": false,
+"name": &"default",
+"speed": 15.0
+}]
+
 [node name="reaper" type="CharacterBody2D"]
 scale = Vector2(1.7, 1.7)
 script = ExtResource("1_rh4x6")
@@ -395,9 +427,11 @@ script = ExtResource("1_rh4x6")
 shape = SubResource("CapsuleShape2D_a2dui")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.55, 1, 0.57, 1)
+texture_filter = 1
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_07h1k")
-animation = &"bombing"
+animation = &"idle"
 
 [node name="attack_timer" type="Timer" parent="."]
 wait_time = 3.0
@@ -433,6 +467,13 @@ collision_layer = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="slash2"]
 position = Vector2(-32.9412, 0.588235)
 shape = SubResource("RectangleShape2D_kdnl0")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(1.18, 1.18, 0, 1)
+scale = Vector2(0.3, 0.3)
+sprite_frames = SubResource("SpriteFrames_kcd0q")
+frame = 5
+frame_progress = 1.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="attack_timer" to="." method="_on_attack_timer_timeout"]
