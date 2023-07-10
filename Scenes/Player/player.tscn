@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://dbhh1ux71x4xa"]
+[gd_scene load_steps=77 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
 [ext_resource type="Texture2D" uid="uid://d3kr5b4u2jxko" path="res://Assets/Knight_player/Attack_KG_1.png" id="2_d71x0"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://djtmbodtan7l0" path="res://Assets/Knight_player/Walking_KG_1.png" id="9_0myvq"]
 [ext_resource type="AudioStream" uid="uid://d3c74qv5vl7bp" path="res://Assets/sounds/Jump.wav" id="29_gobtb"]
 [ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="30_1shp5"]
+[ext_resource type="AudioStream" uid="uid://6lqe8xi5as14" path="res://Assets/music/8bit_bomb_explosion.wav" id="30_3mcgs"]
+[ext_resource type="AudioStream" uid="uid://cfxxm3tsubyd8" path="res://Assets/music/key.mp3" id="31_6pduh"]
 [ext_resource type="AudioStream" uid="uid://3vtqo4vw4dy3" path="res://Assets/sounds/dash.mp3" id="31_nsih4"]
 [ext_resource type="PackedScene" uid="uid://b6h2j610wro7g" path="res://Scenes/Player/Dash/dash.tscn" id="52_l6igk"]
 [ext_resource type="Texture2D" uid="uid://5cmei03a3kfw" path="res://Assets/White Slash Thin/File1.png" id="53_rlxes"]
@@ -495,6 +497,12 @@ collision_mask = 6
 position = Vector2(1, 0)
 shape = SubResource("CapsuleShape2D_v45uk")
 debug_color = Color(0, 0.160784, 0.196078, 0.419608)
+
+[node name="explosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("30_3mcgs")
+
+[node name="keySound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("31_6pduh")
 
 [connection signal="dash_stopped" from="Dash" to="." method="_on_dash_dash_stopped"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]

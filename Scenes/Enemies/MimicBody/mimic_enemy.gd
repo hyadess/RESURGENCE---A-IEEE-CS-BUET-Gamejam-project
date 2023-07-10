@@ -210,9 +210,11 @@ func kill(wait_time = 0.5):
 	$DashGhosts.visible = false
 	$Explosion.visible = true
 	$Explosion.play("default")
+	$explosionSound.play()
 	$CollisionShape2D.disabled = true
 	$sword_collision/CollisionShape2D.disabled = true
 	$sword_collision2/CollisionShape2D.disabled = true
+	await  get_tree().create_timer(1).timeout
 	emit_signal("mimic_enemy_died")
 	set_physics_process(false)
 	set_process(false)
@@ -234,10 +236,11 @@ func _on_sword_slash_animation_finished():
 	$AnimatedSprite2D.play("Idle")
 
 func _on_area_2d_area_entered(area):
-	print("here")
 	if area.is_in_group("Reverse"):
 		flip_x = not flip_x
 		area.get_parent().kill()
+	if area.is_in_group("Fire"):
+		kill()
 		
 func take_damage(val):
 	health = min(0, health - val)

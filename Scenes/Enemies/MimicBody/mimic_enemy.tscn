@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cqame0deqi88l"]
+[gd_scene load_steps=53 format=3 uid="uid://cqame0deqi88l"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/MimicBody/mimic_enemy.gd" id="1_sgtom"]
 [ext_resource type="Texture2D" uid="uid://dvmccy3jlmu6l" path="res://Assets/reaper/HostileAttackReaper-Sheet.png" id="2_s7nj2"]
@@ -21,6 +21,7 @@
 [ext_resource type="Texture2D" uid="uid://embk53el0od8" path="res://Assets/3-Explotion/8.png" id="18_vnvmj"]
 [ext_resource type="Texture2D" uid="uid://dbhfuc7m4205p" path="res://Assets/3-Explotion/9.png" id="19_23x0g"]
 [ext_resource type="Texture2D" uid="uid://drv7otrkr455y" path="res://Assets/3-Explotion/10.png" id="20_qxa26"]
+[ext_resource type="AudioStream" uid="uid://6lqe8xi5as14" path="res://Assets/music/8bit_bomb_explosion.wav" id="22_ie55c"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q23vs"]
 atlas = ExtResource("2_s7nj2")
@@ -340,6 +341,9 @@ debug_color = Color(0, 0.129412, 0.156863, 0.419608)
 [node name="DashTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
+
+[node name="explosionSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_ie55c")
 
 [connection signal="animation_finished" from="sword_slash" to="." method="_on_sword_slash_animation_finished"]
 [connection signal="body_entered" from="sword_collision" to="." method="_on_sword_collision_body_entered"]

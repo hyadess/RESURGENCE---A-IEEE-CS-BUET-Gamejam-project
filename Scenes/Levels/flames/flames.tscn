@@ -1,0 +1,81 @@
+[gd_scene load_steps=12 format=3 uid="uid://bioe3cdobdrdw"]
+
+[ext_resource type="Texture2D" uid="uid://bpusbj06plf8c" path="res://Assets/burning_loop_1.png" id="1_kxnlk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cy62"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(0, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvb3d"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(24, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ams7w"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(48, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8sqt"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(72, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nacsv"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(96, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1o5ti"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(120, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0m0p"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(144, 0, 24, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvyl8"]
+atlas = ExtResource("1_kxnlk")
+region = Rect2(168, 0, 24, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4046j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cy62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvb3d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ams7w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8sqt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nacsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1o5ti")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0m0p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvyl8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q2uef"]
+
+[node name="flames" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_4046j")
+autoplay = "default"
+frame_progress = 0.378131
+
+[node name="Area2D" type="Area2D" parent="." groups=["Fire"]]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 9)
+shape = SubResource("CircleShape2D_q2uef")

@@ -2,7 +2,7 @@ extends Node2D
 
 const SAVE_FILE = "res://gamedata.txt"
 
-var level_to_load:int = 10
+var level_to_load:int = 3
 var max_level_reached:int = 0
 @export var total_levels:int = 11
 var level_lost = false
