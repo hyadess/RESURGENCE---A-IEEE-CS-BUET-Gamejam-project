@@ -6,30 +6,25 @@ var recorded_positions := []
 signal level_clear
 signal level_lost
 
+
 var camera : Camera2D
 var is_player_alive : bool
 var call_again = true
 
-@export var timelimit = 20
-@export var is_timelimit = true
-@export var record_positions_enable = true
-@export var infinite_enemy = false
-@export var enemies_to_spawn = 1
-var enemies_spawned = 0
-@onready var player_initial_position = $Player.global_position
-@export var start_distance = 200
-var player_started_moving = false
-var started_spawning = false
-var time_elapsed = 0
-var got_key = false
+
+var show_starter_dialogue = false
+
+var dialogues = ["Hello young knight. Where are you going?", "To a foreign land, on the other side of the forest.", "You're a brave one, aren't you?", "People don't usually dare to go there.", "Why?", "No one ever comes back alive. People say they meet their inner demons there.", "That's just a myth, old man."]
+var images = ["Bigguy", "player", "Bigguy","Bigguy","player", "Bigguy","player"]
+var shown_dialogues = false
+var show_mirror_dialogue = false
+var met_ghost = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	is_player_alive = true
 	camera = $Player/Camera2D
 	camera.make_current()
-	if is_timelimit:
-		get_parent().get_parent().activate_level_timer()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -37,13 +32,6 @@ func _process(delta):
 	if call_again: check_lose_condition()
 	if call_again: check_win_condition()
 	
-	if is_player_alive and not started_spawning and absf($Player.global_position.x - player_initial_position.x) > start_distance:
-		started_spawning = true
-		player_started_moving = true
-		record_positions_enable = true
-		$StartFollowTimer.start()
-		spawn_enemy(player_initial_position)
-		$LevelTimer.start()
 	
 	if Input.is_action_just_pressed("force_quit"):
 		get_tree().quit()
@@ -65,37 +53,40 @@ func _on_player_player_died():
 	if call_again:check_win_condition()
 
 # ================================== Record Position ================================		
+func add_position(pos):
+	#if(recorded_positions.size() == 0):
+	#recorded_positions.append(pos)
+	pass
+	
+	
 func _on_record_pos_timer_timeout():
-	if is_player_alive and record_positions_enable:
-		recorded_positions.append($Player.global_position)
+	if is_player_alive:
+		add_position($Player.global_position)
 		
 # ================================== Record Position ================================	
 
 func _on_start_follow_timer_timeout():
-	if infinite_enemy or enemies_spawned < enemies_to_spawn:
-		spawn_enemy(player_initial_position)
-
-func spawn_enemy(pos):
-	var enemy =  load("res://Scenes/Enemies/FollowerEnemy/followerEnemy.tscn").instantiate()
-	enemy.global_position = pos
-	enemy.do_follow = true
-	enemies_spawned += 1
-	$Enemies.add_child(enemy)
-
-func _on_level_timer_timeout():
-	time_elapsed += $LevelTimer.wait_time
-	if(time_elapsed >= timelimit) : 
-		$Player.kill()
-	else:
-		get_parent().get_parent().update_level_timer(100 - time_elapsed/timelimit*100)
+	#$Player2.do_follow = true
+	pass
 
 
-func _on_player_got_key():
-	got_key = true
-	$Key.visible = false
-	$Key/Area2D/CollisionShape2D.disabled = true
+func _on_area_2d_area_entered(area):
+	#need to show dialogues
+	if not shown_dialogues:
+		get_parent().get_parent().play_dialogues(["Yay, a new sword.", "Let's try it out(Left click)"], ["player", "player"])
+		$Player.attack_enabled = true
+		shown_dialogues = true
 
+func _on_area_before_mirror_area_entered(area):
+	#need to show dialogues
+	if not show_mirror_dialogue:
+		get_parent().get_parent().play_dialogues(["OMG Is that a sword!"], ["player"])
+		$"Sword-01".visible = false
+		show_mirror_dialogue = true
 
-func _on_exit_body_entered(body):
-	if got_key and body.is_in_group("Player"):
+func _on_area_in_front_of_mirror_area_entered(area):
+	if not met_ghost:
+		met_ghost = true
 		emit_signal("level_clear")
+		
+	pass # Replace with function body.
