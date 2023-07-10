@@ -13,7 +13,7 @@ func _on_exit_pressed():
 
 func _on_play_pressed():
 	#if Globals.level_to_load == 0:
-	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")	
+		Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 	#else :
 		#pass
 

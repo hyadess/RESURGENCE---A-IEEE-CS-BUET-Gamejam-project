@@ -198,6 +198,7 @@ func kill(wait_time = 0.5):
 	$DashGhosts.visible = false
 	$Explosion.visible = true
 	$Explosion.play("default")
+	$explosionSound.play()
 	$CollisionShape2D.disabled = true
 	$sword_collision/CollisionShape2D.disabled = true
 	$sword_collision2/CollisionShape2D.disabled = true
@@ -232,6 +233,7 @@ func _on_area_2d_area_entered(area):
 	
 	elif area.is_in_group("Key"):
 		emit_signal("got_key")
+		$keySound.play()
 		
 
 func take_damage(val):
