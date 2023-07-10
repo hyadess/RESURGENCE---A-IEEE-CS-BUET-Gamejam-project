@@ -1,6 +1,6 @@
 extends Node2D
 
-const SAVE_FILE = "user://save.dat"
+const SAVE_FILE = "res://gamedata.txt"
 
 var level_to_load:int = 3
 var max_level_reached:int = 0
@@ -9,8 +9,8 @@ var level_lost = false
 var showing_dialogue = false
 var got_key = false
 
-#func _ready() -> void:
-#	load_data()
+func _ready() -> void:
+	load_data()
 #
 func level_complete(level_no:int):
 	if level_no >= max_level_reached:
@@ -24,17 +24,12 @@ func has_next_level():
 func set_next_level():
 	level_to_load += 1 
 	
-#func save_data():
-#	var file = File.new()
-#	file.open(SAVE_FILE,File.WRITE)
-#	file.store_32(max_level_reached)
-#	file.close()
-#
-#func load_data():
-#	var file = File.new()
-#	if not file.file_exists(SAVE_FILE):
-#		max_level_reached = 1
-#		save_data()
-#	file.open(SAVE_FILE,File.READ)
-#	max_level_reached = file.get_32()
-#	file.close()
+func load_data():
+	var file = FileAccess.open(SAVE_FILE, FileAccess.READ)
+	var data = file.get_as_text()
+	level_to_load = int(data)
+
+func save_data():
+	var file = FileAccess.open(SAVE_FILE, FileAccess.WRITE)
+	file.store_line(str(level_to_load))
+

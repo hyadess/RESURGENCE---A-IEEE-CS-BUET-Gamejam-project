@@ -436,8 +436,9 @@ limit_bottom = 1080
 limit_smoothed = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+drag_left_margin = 0.1
 drag_top_margin = 0.5
-drag_right_margin = 0.15
+drag_right_margin = 0.1
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
