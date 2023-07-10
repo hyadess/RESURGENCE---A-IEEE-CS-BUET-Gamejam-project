@@ -368,7 +368,7 @@ animations = [{
 size = Vector2(61, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8i8gg"]
-size = Vector2(50, 27)
+size = Vector2(59, 28)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_r0co8"]
 animations = [{
@@ -467,7 +467,7 @@ shape = SubResource("RectangleShape2D_yyt2p")
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision2"]
-position = Vector2(-32, 1.5)
+position = Vector2(-36.5, 1)
 shape = SubResource("RectangleShape2D_8i8gg")
 
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
