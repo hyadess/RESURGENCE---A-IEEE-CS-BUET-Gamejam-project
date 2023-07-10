@@ -74,7 +74,7 @@ func _physics_process(delta):
 		if Input.is_action_just_pressed("attack") and is_attacking==false:
 			is_attacking=true
 			$slashSound.play()
-			$AnimatedSprite2D.play("Attack")
+			$AnimatedSprite2D.play("attack")
 
 		# States
 		is_falling = velocity.y > 0.0 and not is_on_floor()
