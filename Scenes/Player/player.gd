@@ -38,6 +38,7 @@ var facing = "right"
 var is_alive = false
 var playing_attack_animiation = false
 var rng = RandomNumberGenerator.new()
+var is_attacking=false
 
 func _ready():
 	is_alive = true
@@ -61,8 +62,12 @@ func _physics_process(delta):
 		#dash
 		if Input.is_action_just_pressed("dash") and dash.is_dashing()==false and can_dash==true and not is_idling :
 			dash.start_dash($AnimatedSprite2D,dash_duration)
+			$dashSound.play()
 			can_dash=false
 			$DashTimer.start()
+		
+		if Input.is_action_just_pressed("jump"):
+			$jumpSound.play()
 		
 		speed = dash_speed if dash.is_dashing() else actual_speed
 		jump_strength = dash_jump_strength if dash.is_dashing() else actual_jump_strength
@@ -83,10 +88,12 @@ func _physics_process(delta):
 			
 			
 			
-		if Input.is_action_just_pressed("attack"):
+		if Input.is_action_just_pressed("attack") and is_attacking==false:
 			$sword_slash.visible=true
 			$sword_slash.play("slash")
 			$sword_collision.visible=true
+			is_attacking=true
+			$slashSound.play()
 			if(playing_attack_animiation == false):
 				playing_attack_animiation = true
 				var attack_idx = randi_range(2 ,3)
@@ -200,6 +207,12 @@ func _on_sword_slash_animation_finished():
 	$sword_slash.visible=false
 	$sword_collision.visible=false
 	$sword.visible=false
+	is_attacking=false
 	playing_attack_animiation = false
 	$AnimatedSprite2D.play("Idle")
+	
+
+
+func _on_dash_dash_stopped():
+	pass
 	

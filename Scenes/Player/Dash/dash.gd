@@ -3,7 +3,7 @@ extends Node2D
 @onready var dur_timer=$DurationTimer
 var dash_ghost=preload("res://Scenes/Player/Dash/dash_ghost.tscn")
 var sprite : AnimatedSprite2D
-
+signal dash_stopped
 
 func _process(_delta):
 	if !dur_timer.is_stopped():
@@ -39,6 +39,7 @@ func instance_ghost():
 
 func _on_duration_timer_timeout():
 	$GhostTimer.stop()
+	dash_stopped.emit()
 	
 
 
