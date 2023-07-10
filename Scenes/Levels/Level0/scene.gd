@@ -99,6 +99,7 @@ func _on_area_in_front_of_mirror_area_entered(area):
 		$Player.restrict_movement = true
 		await get_tree().create_timer(2).timeout
 		$Transition.fade_in()
+		$glassSound.play()
 		await get_tree().create_timer(2).timeout
 		$Transition.fade_out()
 		$Node2D.visible = false

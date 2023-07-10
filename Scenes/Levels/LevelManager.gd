@@ -23,9 +23,9 @@ func load_level(level_no = 0):
 	self.level_no = level_no
 	if is_instance_valid(level) :
 		level.queue_free()
-		$Transition.fade_in()
+		$transition3.fade_in()
 		await get_tree().create_timer(0.6).timeout
-		$Transition.fade_out()
+		$transition3.fade_out()
 	level = load("res://Scenes/Levels/Level" + str(level_no) + "/scene.tscn").instantiate()
 	level.position = Vector2.ZERO
 	$LevelContainer.add_child(level)
@@ -43,7 +43,9 @@ func next_level():
 	if Globals.has_next_level() : 
 		Globals.set_next_level()
 		load_level(Globals.level_to_load)
-#	else: get_tree().change_scene("res://src/UI/Credit/Credit.tscn") # thank you scene
+	else:
+		Globals.level_to_load = 0 
+		Transition.change_scene("res://Scenes/UI/Thanks/Thanks.tscn") # thank you scene
 
 func on_level_clear():
 	print("Got level clear")

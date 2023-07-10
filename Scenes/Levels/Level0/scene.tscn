@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://row58uftcxen"]
+[gd_scene load_steps=71 format=3 uid="uid://row58uftcxen"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level0/scene.gd" id="1_ofghk"]
 [ext_resource type="Texture2D" uid="uid://df2pwoo73wdek" path="res://Assets/Pirate Island/Palm Tree Island/Sprites/Terrain/Terrain (32x32).png" id="2_0fwii"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://cn84wtl0mxgbb" path="res://Assets/Animation Sprite Sheets (PNG)/PassiveRunningReaper-Sheet.png" id="46_f0vvq"]
 [ext_resource type="Texture2D" uid="uid://bklaxgyj8ycjw" path="res://Assets/eyes.png" id="47_ljgtn"]
 [ext_resource type="PackedScene" uid="uid://bh5t5026gwx2m" path="res://Scenes/Utils/Transition/transitionWhite.tscn" id="48_jrpmj"]
+[ext_resource type="AudioStream" uid="uid://bl8yhvnxw4p6b" path="res://Assets/music/mixkit-glass-break-with-hammer-thud-759.wav" id="49_uyg7b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcoyj"]
 resource_name = "BaseTileset"
@@ -543,6 +544,7 @@ flip_h = true
 
 [node name="Player" parent="." instance=ExtResource("3_51vey")]
 position = Vector2(203, 982)
+attack_enabled = false
 
 [node name="RecordPosTimer" type="Timer" parent="."]
 wait_time = 0.05
@@ -588,6 +590,10 @@ position = Vector2(3453, 986)
 shape = SubResource("RectangleShape2D_x1x1l")
 
 [node name="Transition" parent="." instance=ExtResource("48_jrpmj")]
+
+[node name="glassSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("49_uyg7b")
+volume_db = 15.0
 
 [connection signal="timeout" from="RecordPosTimer" to="." method="_on_record_pos_timer_timeout"]
 [connection signal="timeout" from="StartFollowTimer" to="." method="_on_start_follow_timer_timeout"]

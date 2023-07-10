@@ -233,6 +233,7 @@ func _on_area_2d_area_entered(area):
 	
 	elif area.is_in_group("Key"):
 		emit_signal("got_key")
+		area.visible = false
 		$keySound.play()
 		
 

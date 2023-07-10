@@ -251,7 +251,7 @@ shape = SubResource("RectangleShape2D_4x4nf")
 [node name="AreaInFrontOfMirror" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AreaInFrontOfMirror"]
-position = Vector2(1407, 729.5)
+position = Vector2(2011, 740)
 shape = SubResource("RectangleShape2D_x1x1l")
 
 [node name="Sword-01" type="Sprite2D" parent="."]

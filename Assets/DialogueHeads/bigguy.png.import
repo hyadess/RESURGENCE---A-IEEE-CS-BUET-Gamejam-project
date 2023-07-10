@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dahkwisurf4mb"
-path="res://.godot/imported/bigguy.png-eadf7a598df233a3b6c40f98a30935e6.ctex"
+path="res://.godot/imported/Bigguy.png-e3bd570c6a073977964e58f8c693b241.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/DialogueHeads/bigguy.png"
-dest_files=["res://.godot/imported/bigguy.png-eadf7a598df233a3b6c40f98a30935e6.ctex"]
+source_file="res://Assets/DialogueHeads/Bigguy.png"
+dest_files=["res://.godot/imported/Bigguy.png-e3bd570c6a073977964e58f8c693b241.ctex"]
 
 [params]
 

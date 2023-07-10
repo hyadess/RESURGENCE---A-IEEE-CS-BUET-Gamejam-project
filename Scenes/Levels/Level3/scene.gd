@@ -74,6 +74,7 @@ func _on_area_2d_area_entered(area):
 	#need to show dialogues
 	if not shown_dialogues:
 		get_parent().get_parent().play_dialogues(["Yay, a new sword.", "Let's try it out(Left click)"], ["player", "player"])
+		$"Sword-01".visible = false
 		$Player.attack_enabled = true
 		shown_dialogues = true
 
@@ -81,7 +82,6 @@ func _on_area_before_mirror_area_entered(area):
 	#need to show dialogues
 	if not show_mirror_dialogue:
 		get_parent().get_parent().play_dialogues(["OMG Is that a sword!"], ["player"])
-		$"Sword-01".visible = false
 		show_mirror_dialogue = true
 
 func _on_area_in_front_of_mirror_area_entered(area):

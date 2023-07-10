@@ -12,35 +12,34 @@ func _process(delta):
 
 
 func _on_button_pressed():
-	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
+	Globals.level_to_load = 5
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 
 
 func _on_button_2_pressed():
-	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
+	Globals.level_to_load = 10
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 
 
 func _on_button_3_pressed():
-	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
+	Globals.level_to_load = 11
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 
 
 func _on_button_4_pressed():
-	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
-
+	Globals.level_to_load = 12
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 
 func _on_button_5_pressed():
 	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 
 
 func _on_button_6_pressed():
 	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
 
 
 func _on_button_7_pressed():
 	Globals.level_to_load = 0
-	Transition.change_scene("res://Scenes/UI/Main/main_menu.tscn")
+	Transition.change_scene("res://Scenes/Levels/LevelManager.tscn")
