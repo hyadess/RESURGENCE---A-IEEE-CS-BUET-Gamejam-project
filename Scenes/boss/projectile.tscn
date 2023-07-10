@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2kfbuni7hh82"]
+
+[ext_resource type="Script" path="res://Scenes/boss/projectile.gd" id="1_4ay0w"]
+[ext_resource type="Texture2D" uid="uid://2qamqlki1jx8" path="res://Assets/soul.png" id="1_l6uo5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1g1jv"]
+
+[node name="projectile" type="CharacterBody2D"]
+script = ExtResource("1_4ay0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 4)
+shape = SubResource("CircleShape2D_1g1jv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_l6uo5")

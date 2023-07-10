@@ -1,3 +1,4 @@
+
 [gd_scene load_steps=79 format=3 uid="uid://dbhh1ux71x4xa"]
 
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_bet5j"]
@@ -60,6 +61,11 @@
 [ext_resource type="Texture2D" uid="uid://c3lwlfi0c61e6" path="res://Assets/White Slash Thin/File6.png" id="58_kvmsl"]
 [ext_resource type="Texture2D" uid="uid://be61e07mtfaqm" path="res://Assets/sword_pic.png" id="59_o5625"]
 [ext_resource type="Script" path="res://Scenes/Player/sword.gd" id="60_qupxa"]
+
+[ext_resource type="AudioStream" uid="uid://3vtqo4vw4dy3" path="res://Assets/sounds/dash.mp3" id="61_xw0a0"]
+[ext_resource type="AudioStream" uid="uid://43vvdgdq4r0t" path="res://Assets/sounds/slash.mp3" id="62_fnfrv"]
+[ext_resource type="AudioStream" uid="uid://d3c74qv5vl7bp" path="res://Assets/sounds/Jump.wav" id="63_ug3rk"]
+
 [ext_resource type="Texture2D" uid="uid://muna1fh1t1a3" path="res://Assets/3-Explotion/1.png" id="61_lfr2c"]
 [ext_resource type="Texture2D" uid="uid://co5oq1dm7pmxx" path="res://Assets/3-Explotion/2.png" id="62_6nshx"]
 [ext_resource type="Texture2D" uid="uid://gc4s2p6sfcm8" path="res://Assets/3-Explotion/3.png" id="63_tt4t5"]
@@ -70,6 +76,7 @@
 [ext_resource type="Texture2D" uid="uid://embk53el0od8" path="res://Assets/3-Explotion/8.png" id="68_3mpc7"]
 [ext_resource type="Texture2D" uid="uid://dbhfuc7m4205p" path="res://Assets/3-Explotion/9.png" id="69_kn1bv"]
 [ext_resource type="Texture2D" uid="uid://drv7otrkr455y" path="res://Assets/3-Explotion/10.png" id="70_ngy7a"]
+
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ie7vj"]
 animations = [{
@@ -516,6 +523,18 @@ speed_scale = 1.7
 libraries = {
 "": SubResource("AnimationLibrary_o30ji")
 }
+
+
+
+[node name="dashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("61_xw0a0")
+
+[node name="slashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("62_fnfrv")
+
+[node name="jumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("63_ug3rk")
+
 
 [node name="Explosion" type="AnimatedSprite2D" parent="."]
 visible = false
