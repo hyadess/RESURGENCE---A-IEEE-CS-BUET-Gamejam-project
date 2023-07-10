@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
 
-signal player_died
-signal got_key
+signal mimic_enemy_died
+
 
 #for dash
 @onready var dash=$Dash
@@ -23,6 +23,8 @@ signal got_key
 @export var attack_enabled = true
 @export var health = 100
 @export var attack_damage = 100
+
+@export var init_flip_x = true
 
 var jumps_made = 0
 var speed = 0
@@ -46,8 +48,14 @@ var is_attacking=false
 var restrict_movement = false
 @onready var sword_collision_x = $sword_collision/CollisionShape2D.position.x
 @onready var sword_collision_x2 = $sword_collision2/CollisionShape2D.position.x
+@onready var flip_x = init_flip_x
+
 func _ready():
 	is_alive = true
+	if flip_x :
+		facing = "left"
+	else:
+		facing = "true"
 
 func _physics_process(delta):
 	
@@ -68,12 +76,13 @@ func _physics_process(delta):
 		#dash
 		if Input.is_action_just_pressed("dash") and dash.is_dashing()==false and can_dash==true and not is_idling :
 			dash.start_dash($AnimatedSprite2D,dash_duration)
-			$dashSound.play()
+			#$dashSound.play()
 			can_dash=false
 			$DashTimer.start()
 		
 		if Input.is_action_just_pressed("jump"):
-			$jumpSound.play()
+			#$jumpSound.play()
+			pass
 		
 		speed = dash_speed if dash.is_dashing() else actual_speed
 		jump_strength = dash_jump_strength if dash.is_dashing() else actual_jump_strength
@@ -81,11 +90,11 @@ func _physics_process(delta):
 		
 		velocity.x = clamp(velocity.x, -speed, speed)
 	
-		if Input.is_action_pressed("right"):
+		if (Input.is_action_pressed("right") and not flip_x) or (Input.is_action_pressed("left") and  flip_x):
 			velocity.x += speed * delta
 			facing = "right"
 			
-		elif Input.is_action_pressed("left"):
+		elif (Input.is_action_pressed("left") and not flip_x) or (Input.is_action_pressed("right") and flip_x):
 			velocity.x -= speed * delta
 			facing = "left"
 
@@ -96,17 +105,16 @@ func _physics_process(delta):
 			
 		if Input.is_action_just_pressed("attack") and attack_enabled and is_attacking==false:
 			$sword_slash.visible=true
-			$sword_slash.play("slash")
+			$sword_slash.play()
 			$sword_collision.visible=true
 			$sword_collision/CollisionShape2D.disabled = false
 			$sword_collision2.visible=true
 			$sword_collision2/CollisionShape2D.disabled = false
 			is_attacking=true
-			$slashSound.play()
+			# $slashSound.play()
 			if(playing_attack_animiation == false):
 				playing_attack_animiation = true
-				var attack_idx = randi_range(2 ,3)
-				$AnimatedSprite2D.play("Attack" + str(attack_idx))
+				$AnimatedSprite2D.play("Attack")
 			
 	
 	# States
@@ -162,6 +170,11 @@ func _physics_process(delta):
 		#emit_signal("grounded_updated", is_grounded)
 		pass
 		
+	
+	
+		
+		
+
 	if position.y > 5000 : kill()
 	
 	
@@ -200,14 +213,10 @@ func kill(wait_time = 0.5):
 	$CollisionShape2D.disabled = true
 	$sword_collision/CollisionShape2D.disabled = true
 	$sword_collision2/CollisionShape2D.disabled = true
-	emit_signal("player_died")
+	emit_signal("mimic_enemy_died")
 	set_physics_process(false)
 	set_process(false)
 	
-#	await get_tree().create_timer(wait_time).timeout
-	#queue_free()
-
-
 
 func _on_dash_timer_timeout():
 	can_dash=true
@@ -223,27 +232,23 @@ func _on_sword_slash_animation_finished():
 	$sword_collision/CollisionShape2D.disabled = true
 	$sword_collision2/CollisionShape2D.disabled = true
 	$AnimatedSprite2D.play("Idle")
-	
 
 func _on_area_2d_area_entered(area):
-	if area.is_in_group("FollowerEnemy") and not area.get_parent().dying:
-		kill()
-	
-	elif area.is_in_group("Key"):
-		emit_signal("got_key")
+	print("here")
+	if area.is_in_group("Reverse"):
+		flip_x = not flip_x
+		area.get_parent().kill()
 		
-
 func take_damage(val):
 	health = min(0, health - val)
 	if health <= 0:
 		kill()
 
-
 func _on_sword_collision_body_entered(body):
-	if body.is_in_group("FollowerEnemy"):
+	if body.is_in_group("Player"):
 		body.take_damage(attack_damage)
 
 
 func _on_sword_collision_2_body_entered(body):
-	if body.is_in_group("FollowerEnemy"):
+	if body.is_in_group("Player"):
 		body.take_damage(attack_damage)
