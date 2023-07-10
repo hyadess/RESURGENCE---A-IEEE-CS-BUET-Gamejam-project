@@ -14,8 +14,8 @@ var call_again = true
 
 var show_starter_dialogue = false
 
-var dialogues = ["Hello young knight. Where are you going?", "To a foreign land, on the other side of the forest.", "You're a brave one, aren't you?", "People don't usually dare to go there.", "Why?", "No one ever comes back alive. People say they meet their inner demons there.", "That's just a myth, old man."]
-var images = ["Bigguy", "player", "Bigguy","Bigguy","player", "Bigguy","player"]
+var dialogues = ["Back already?", "Yeah. I fell asleep in the forest", "Weird kid", "Nice sword btw. where did u get it?", "Nice what?..."]
+var images = ["Bigguy", "player", "Bigguy","Bigguy","player"]
 var shown_dialogues = false
 var show_mirror_dialogue = false
 var met_ghost = false
@@ -25,6 +25,10 @@ func _ready():
 	is_player_alive = true
 	camera = $Player/Camera2D
 	camera.make_current()
+	$Player/AnimatedSprite2D.play("Lie")
+	await get_tree().create_timer(2).timeout
+	$Player/AnimatedSprite2D.play("Idle")
+	get_parent().get_parent().play_dialogues(["Where am I?", "Its that mirror again", "Did I fall asleep?", "It must've been a deram", "Maybe I should go back"], ["player","player","player","player","player"])
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -32,6 +36,12 @@ func _process(delta):
 	if call_again: check_lose_condition()
 	if call_again: check_win_condition()
 	
+	
+	var big_guy_pos = $AnimatedSprite2D.global_position
+	var player_pos = $Player.global_position
+	
+	if player_pos.x < big_guy_pos.x : $AnimatedSprite2D.flip_h = true
+	else : $AnimatedSprite2D.flip_h = false
 	
 	if Input.is_action_just_pressed("force_quit"):
 		get_tree().quit()
@@ -73,20 +83,8 @@ func _on_start_follow_timer_timeout():
 func _on_area_2d_area_entered(area):
 	#need to show dialogues
 	if not shown_dialogues:
-		get_parent().get_parent().play_dialogues(["Yay, a new sword.", "Let's try it out(Left click)"], ["player", "player"])
-		$Player.attack_enabled = true
+		get_parent().get_parent().play_dialogues(dialogues, images)
+		await get_tree().create_timer(1).timeout
+		#emit_signal("level_clear")
 		shown_dialogues = true
 
-func _on_area_before_mirror_area_entered(area):
-	#need to show dialogues
-	if not show_mirror_dialogue:
-		get_parent().get_parent().play_dialogues(["OMG Is that a sword!"], ["player"])
-		$"Sword-01".visible = false
-		show_mirror_dialogue = true
-
-func _on_area_in_front_of_mirror_area_entered(area):
-	if not met_ghost:
-		met_ghost = true
-		emit_signal("level_clear")
-		
-	pass # Replace with function body.
