@@ -3,7 +3,6 @@ extends Node2D
 var level : Node
 var level_no : int
 
-
 func _ready():
 	load_level(Globals.level_to_load)
 
@@ -73,8 +72,8 @@ func _on_pause_menu_panel_resume_button():
 	$InGameMenu/Pause.visible = false
 
 
-func play_dialogues(dialogues):
-	$DialogueManager.set_dialogue(dialogues)
+func play_dialogues(dialogues, images):
+	$DialogueManager.set_dialogue(dialogues, images)
 	$DialogueManager.start_dialogue()
 
 func activate_level_timer():

@@ -542,7 +542,7 @@ sprite_frames = SubResource("SpriteFrames_gq4fi")
 flip_h = true
 
 [node name="Player" parent="." instance=ExtResource("3_51vey")]
-position = Vector2(203, 989)
+position = Vector2(203, 982)
 
 [node name="RecordPosTimer" type="Timer" parent="."]
 wait_time = 0.05

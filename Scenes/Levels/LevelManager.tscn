@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dwpeb1qhlkggq"]
+[gd_scene load_steps=13 format=3 uid="uid://dwpeb1qhlkggq"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/LevelManager.gd" id="1_6d3sg"]
 [ext_resource type="PackedScene" uid="uid://c85ml30haec3" path="res://Scenes/Backgrounds/parallax_bg.tscn" id="1_hc20e"]
 [ext_resource type="PackedScene" uid="uid://c786bn6uu3qvv" path="res://Scenes/DialogueManager/dialogue_manager.tscn" id="2_kgkt0"]
+[ext_resource type="Script" path="res://Scenes/Levels/LevelContainer.gd" id="3_bg1ur"]
 [ext_resource type="PackedScene" uid="uid://di5642v8458n8" path="res://Scenes/Backgrounds/parallax_fg.tscn" id="3_ojoog"]
 [ext_resource type="PackedScene" uid="uid://c0d7t8nfb2168" path="res://Scenes/UI/PauseMenu/pauseMenu.tscn" id="4_yot7t"]
 [ext_resource type="Texture2D" uid="uid://c8kgyebc12sht" path="res://Assets/Utils/under-01.png" id="5_0m8ga"]
@@ -28,6 +29,7 @@ transform = Transform2D(1, 0, 0, 1, 0, -400)
 
 [node name="LevelContainer" type="Node2D" parent="."]
 position = Vector2(-3, 0)
+script = ExtResource("3_bg1ur")
 
 [node name="ParallaxBackground2" parent="." instance=ExtResource("3_ojoog")]
 layer = 0

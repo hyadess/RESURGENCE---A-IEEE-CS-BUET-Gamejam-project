@@ -115,7 +115,7 @@ func _physics_process(delta):
 	is_double_jumping = Input.is_action_just_pressed("jump") and (is_falling or is_jumping or not is_on_floor()) and not restrict_movement
 	is_jump_cancelled = Input.is_action_just_released("jump") and velocity.y < 0.0 
 	is_idling = is_on_floor() and not (Input.is_action_pressed("left") or Input.is_action_pressed("right"))
-	is_running = is_on_floor() and (Input.is_action_pressed("left") or Input.is_action_pressed("right"))
+	is_running = is_on_floor() and (Input.is_action_pressed("left") or Input.is_action_pressed("right")) and not restrict_movement
 	is_grounded = is_on_floor()
 	
 	if Globals.showing_dialogue:
@@ -180,6 +180,7 @@ func animation():
 		$AnimatedSprite2D.flip_h = false
 		$sword_collision/CollisionShape2D.position.x = sword_collision_x
 		$sword_collision2/CollisionShape2D.position.x = sword_collision_x2
+	
 	if not playing_attack_animiation:	
 		if is_jumping or is_double_jumping: $AnimatedSprite2D.play("Jump")
 		elif is_running: $AnimatedSprite2D.play("Run")

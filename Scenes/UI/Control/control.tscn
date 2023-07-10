@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1uwyrcw1lx1"]
+
+[ext_resource type="Theme" uid="uid://bikiobbxa42tr" path="res://Scenes/UI/title_theme.tres" id="1_0p6n4"]
+[ext_resource type="Script" path="res://Scenes/UI/Control/control.gd" id="1_eanvr"]
+[ext_resource type="FontFile" uid="uid://lw74g77ulxmj" path="res://Assets/Fonts/Roboto-Black.ttf" id="2_qttnw"]
+
+[sub_resource type="Theme" id="Theme_67iwl"]
+default_font = ExtResource("2_qttnw")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eanvr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.956863, 0.886275, 0.643137, 1)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1627.0
+offset_top = 949.0
+offset_right = 1815.0
+offset_bottom = 1018.0
+theme = ExtResource("1_0p6n4")
+theme_override_font_sizes/font_size = 44
+text = "Menu
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 228.0
+offset_right = 525.0
+offset_bottom = 844.0
+theme = SubResource("Theme_67iwl")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "W - up
+
+S - down
+
+A - left
+
+D - down"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1056.0
+offset_top = 225.0
+offset_right = 1722.0
+offset_bottom = 841.0
+theme = SubResource("Theme_67iwl")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "Space - Jump
+
+Tab - Skip dialogues
+
+Left Click - Attack
+
+Right Click - Dash"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
