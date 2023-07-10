@@ -41,6 +41,7 @@ grow_vertical = 2
 theme = SubResource("Theme_ypxbq")
 text = "Dialogue
 "
+autowrap_mode = 2
 script = ExtResource("3_dm0ed")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

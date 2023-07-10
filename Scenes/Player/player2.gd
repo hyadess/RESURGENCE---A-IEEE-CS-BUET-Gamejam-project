@@ -81,6 +81,17 @@ func _physics_process(delta):
 		else:
 			velocity.x = lerpf(velocity.x, 0, 0.2)
 			
+			
+			
+		if Input.is_action_just_pressed("attack"):
+			$sword_slash.visible=true
+			$sword_slash.play("slash")
+			$sword_collision.visible=true
+			if(playing_attack_animiation == false):
+				playing_attack_animiation = true
+				var attack_idx = randi_range(2 ,3)
+				$AnimatedSprite2D.play("Attack" + str(attack_idx))
+			
 	
 	# States
 	is_falling = velocity.y > 0.0 and not is_on_floor()
@@ -136,14 +147,7 @@ func _physics_process(delta):
 		pass
 		
 	
-	if Input.is_action_just_pressed("attack"):
-		$sword_slash.visible=true
-		$sword_slash.play("slash")
-		$sword_collision.visible=true
-		if(playing_attack_animiation == false):
-			playing_attack_animiation = true
-			var attack_idx = randi_range(2 ,3)
-			$AnimatedSprite2D.play("Attack" + str(attack_idx))
+	
 		
 		
 

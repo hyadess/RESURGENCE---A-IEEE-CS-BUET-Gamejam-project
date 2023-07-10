@@ -56,6 +56,6 @@ func _on_record_pos_timer_timeout():
 # ================================== Record Position ================================	
 
 func _on_start_follow_timer_timeout():
-	$Player2.do_follow = true
+	#$Player2.do_follow = true
 	pass
 
