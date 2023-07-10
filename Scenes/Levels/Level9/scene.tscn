@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://row58uftcxen"]
 
-[ext_resource type="Script" path="res://Scenes/Levels/Level11/scene.gd" id="1_ofghk"]
+[ext_resource type="Script" path="res://Scenes/Levels/Level9/scene.gd" id="1_ofghk"]
 [ext_resource type="Texture2D" uid="uid://df2pwoo73wdek" path="res://Assets/Pirate Island/Palm Tree Island/Sprites/Terrain/Terrain (32x32).png" id="2_0fwii"]
 [ext_resource type="PackedScene" uid="uid://dbhh1ux71x4xa" path="res://Scenes/Player/player.tscn" id="3_nc3y0"]
 [ext_resource type="PackedScene" uid="uid://cqame0deqi88l" path="res://Scenes/Enemies/MimicBody/mimic_enemy.tscn" id="4_vyq1w"]

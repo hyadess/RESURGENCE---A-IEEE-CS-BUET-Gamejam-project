@@ -387,7 +387,7 @@ size = Vector2(44.1176, 22.3529)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdnl0"]
 size = Vector2(44.1176, 22.9412)
 
-[node name="reaper" type="CharacterBody2D"]
+[node name="reaper" type="CharacterBody2D" groups=["boss"]]
 scale = Vector2(1.7, 1.7)
 script = ExtResource("1_rh4x6")
 

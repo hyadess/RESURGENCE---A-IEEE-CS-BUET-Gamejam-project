@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://j3s11ouawk66"]
+[gd_scene load_steps=6 format=3 uid="uid://j3s11ouawk66"]
 
 [ext_resource type="Theme" uid="uid://bikiobbxa42tr" path="res://Scenes/UI/title_theme.tres" id="1_3dcs5"]
 [ext_resource type="Script" path="res://Scenes/UI/Main/main_menu.gd" id="1_sykyd"]
 [ext_resource type="FontFile" uid="uid://lw74g77ulxmj" path="res://Assets/Fonts/Roboto-Black.ttf" id="3_xyop7"]
+[ext_resource type="AudioStream" uid="uid://brpm3ext6a2wq" path="res://Assets/background_music.mp3" id="4_unxwu"]
 
 [sub_resource type="Theme" id="Theme_ch61o"]
 default_font = ExtResource("3_xyop7")
@@ -88,6 +89,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_ch61o")
 text = "Exit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_unxwu")
+autoplay = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Instructiuons" to="." method="_on_instructiuons_pressed"]

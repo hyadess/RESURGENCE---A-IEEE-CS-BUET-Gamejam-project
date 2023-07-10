@@ -273,7 +273,7 @@ animations = [{
 size = Vector2(53, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lh1cy"]
-size = Vector2(20.5, 29)
+size = Vector2(4.5, 29)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n48uw"]
 radius = 16.0
@@ -324,7 +324,7 @@ disabled = true
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sword_collision2"]
-position = Vector2(-22.75, 6)
+position = Vector2(-14.75, 6)
 shape = SubResource("RectangleShape2D_lh1cy")
 disabled = true
 

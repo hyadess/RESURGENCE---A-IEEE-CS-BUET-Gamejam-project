@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://row58uftcxen"]
+[gd_scene load_steps=8 format=3 uid="uid://row58uftcxen"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/Level3/scene.gd" id="1_o52f0"]
 [ext_resource type="Texture2D" uid="uid://df2pwoo73wdek" path="res://Assets/Pirate Island/Palm Tree Island/Sprites/Terrain/Terrain (32x32).png" id="2_0fwii"]
 [ext_resource type="PackedScene" uid="uid://dbhh1ux71x4xa" path="res://Scenes/Player/player.tscn" id="3_nc3y0"]
 [ext_resource type="PackedScene" uid="uid://xk8uoqtu6s68" path="res://Scenes/Utils/Key/key.tscn" id="4_ah7qu"]
-[ext_resource type="PackedScene" uid="uid://ckqoi6bpghkwl" path="res://Scenes/boss/reaper.tscn" id="5_5qfhn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fcoyj"]
 resource_name = "BaseTileset"
@@ -252,9 +251,6 @@ position = Vector2(577, 985)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Exit"]
 position = Vector2(1139, 971)
 shape = SubResource("RectangleShape2D_72m5e")
-
-[node name="reaper" parent="." instance=ExtResource("5_5qfhn")]
-position = Vector2(1567, 980)
 
 [connection signal="got_key" from="Player" to="." method="_on_player_got_key"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
